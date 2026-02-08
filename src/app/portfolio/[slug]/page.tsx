@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { GsapScrollReveal, MagneticButton } from "@/components/animations";
@@ -729,7 +731,566 @@ const PROJECTS: Record<
     ],
     relatedProjects: ["luxury-auto-launch", "corporate-gala-night"],
   },
+  "qatar-ecommerce-hackathon": {
+    title: "Qatar's 1st E-Commerce Hackathon",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "Ministry of Communications and Information Technology (MCIT)",
+    location: "Doha, Qatar",
+    duration: "3 Days",
+    description:
+      "Qatar's first-ever e-commerce hackathon, a groundbreaking initiative bringing together innovators, developers, and entrepreneurs to solve digital commerce challenges and drive innovation in the nation's growing digital economy.",
+    challenge:
+      "Design and execute Qatar's first e-commerce hackathon, creating an environment that inspires innovation while providing participants with the resources and mentorship needed to develop viable digital commerce solutions.",
+    approach:
+      "We created an immersive hackathon experience with expert mentors, collaborative workspaces, and structured programming that guided participants from ideation to prototype development.",
+    solution:
+      "The hackathon featured multiple tracks addressing key e-commerce challenges, expert judging panels, networking sessions with industry leaders, and prize awards for the most innovative solutions.",
+    results: [
+      { value: "First", label: "E-Commerce Hackathon" },
+      { value: "3", label: "Days" },
+      { value: "Innovation", label: "Focus" },
+      { value: "MCIT", label: "Partnership" },
+    ],
+    highlights: [
+      "Qatar's first e-commerce focused hackathon",
+      "Expert mentorship from industry leaders",
+      "Multiple innovation tracks",
+      "Networking with digital commerce pioneers",
+      "Prize awards for top solutions",
+    ],
+    gallery: [
+      "/images/portfolio/qatar-ecommerce-hackathon-1.jpg",
+      "/images/portfolio/qatar-ecommerce-hackathon-2.jpg",
+      "/images/portfolio/qatar-ecommerce-hackathon-3.jpg",
+    ],
+    relatedProjects: ["digital-agenda-2030", "fanar-launch"],
+  },
+  "ooredoo-yalla-namshi": {
+    title: "Ooredoo x MSDF Yalla Namshi",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "Ooredoo / MSDF",
+    location: "Doha, Qatar",
+    duration: "1 Day",
+    description:
+      "A collaborative wellness and community event by Ooredoo and MSDF, promoting active lifestyle and social connection through an engaging walking initiative that brought together participants of all ages.",
+    challenge:
+      "Create a community-focused wellness event that encourages physical activity while fostering social connections and promoting the collaborative partnership between Ooredoo and MSDF.",
+    approach:
+      "We designed an inclusive event experience that combined fitness activities with community engagement, featuring interactive stations and activities that appealed to diverse participants.",
+    solution:
+      "The event featured organized walking routes, wellness activities, interactive brand activations, refreshment stations, and community celebration moments that brought participants together.",
+    results: [
+      { value: "Community", label: "Focus" },
+      { value: "Wellness", label: "Theme" },
+      { value: "Partnership", label: "Ooredoo x MSDF" },
+      { value: "All Ages", label: "Participants" },
+    ],
+    highlights: [
+      "Community wellness initiative",
+      "Active lifestyle promotion",
+      "Ooredoo and MSDF partnership",
+      "Interactive wellness activities",
+      "Inclusive event for all ages",
+    ],
+    gallery: [
+      "/images/portfolio/ooredoo-yalla-namshi-1.jpg",
+      "/images/portfolio/ooredoo-yalla-namshi-2.jpg",
+      "/images/portfolio/ooredoo-yalla-namshi-3.jpg",
+    ],
+    relatedProjects: ["msdf-mulhemeen", "regional-sports-championship"],
+  },
+  "msdf-mulhemeen": {
+    title: "MSDF Mulhemeen",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "MSDF",
+    location: "Doha, Qatar",
+    duration: "1 Evening",
+    description:
+      "An inspiring celebration honoring achievers and showcasing stories of success, determination, and perseverance. Mulhemeen brought together remarkable individuals whose journeys inspire others to pursue excellence.",
+    challenge:
+      "Create an emotionally impactful event that authentically celebrates achievement while inspiring the audience through compelling storytelling and meaningful recognition moments.",
+    approach:
+      "We designed an evening that balanced celebration with inspiration, featuring multimedia storytelling, live testimonials, and carefully choreographed award presentations.",
+    solution:
+      "The event featured cinematic video tributes, live interviews with honorees, musical performances, and an elegant awards ceremony that celebrated each achiever's unique journey.",
+    results: [
+      { value: "Inspiring", label: "Stories" },
+      { value: "Excellence", label: "Celebrated" },
+      { value: "MSDF", label: "Initiative" },
+      { value: "Impact", label: "Created" },
+    ],
+    highlights: [
+      "Celebration of remarkable achievers",
+      "Compelling multimedia storytelling",
+      "Live testimonials and interviews",
+      "Elegant awards ceremony",
+      "Inspirational evening program",
+      "Musical performances",
+    ],
+    gallery: [
+      "/images/portfolio/msdf-mulhemeen-1.jpg",
+      "/images/portfolio/msdf-mulhemeen-2.jpg",
+      "/images/portfolio/msdf-mulhemeen-3.jpg",
+      "/images/portfolio/msdf-mulhemeen-4.jpg",
+      "/images/portfolio/msdf-mulhemeen-5.jpg",
+      "/images/portfolio/msdf-mulhemeen-6.jpg",
+    ],
+    relatedProjects: ["ooredoo-yalla-namshi", "corporate-gala-night"],
+  },
+  "al-jazeera-finance-anniversary": {
+    title: "Al Jazeera Finance Anniversary",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "Al Jazeera Finance",
+    location: "Doha, Qatar",
+    duration: "1 Evening",
+    description:
+      "An elegant corporate anniversary celebration honoring Al Jazeera Finance's milestones and achievements. The event brought together stakeholders, partners, and team members to celebrate the company's journey and vision for the future.",
+    challenge:
+      "Design a sophisticated anniversary celebration that honors the company's heritage while looking forward to future growth, creating meaningful moments for all attendees.",
+    approach:
+      "We created an elegant evening experience that balanced reflection on achievements with celebration of the company's people and vision for continued success.",
+    solution:
+      "The celebration featured a retrospective journey through company milestones, recognition of key contributors, keynote presentations, and an elegant dinner experience.",
+    results: [
+      { value: "Milestone", label: "Celebration" },
+      { value: "Heritage", label: "Honored" },
+      { value: "Vision", label: "Shared" },
+      { value: "Team", label: "Celebrated" },
+    ],
+    highlights: [
+      "Corporate milestone celebration",
+      "Retrospective journey through achievements",
+      "Recognition of key contributors",
+      "Vision for future growth",
+      "Elegant evening experience",
+    ],
+    gallery: [
+      "/images/portfolio/al-jazeera-finance-anniversary-1.jpg",
+      "/images/portfolio/al-jazeera-finance-anniversary-2.jpg",
+      "/images/portfolio/al-jazeera-finance-anniversary-3.jpg",
+    ],
+    relatedProjects: ["corporate-gala-night", "digital-agenda-2030"],
+  },
+  "coffee-down-under": {
+    title: "Coffee Down Under",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2023",
+    client: "Coffee Down Under",
+    location: "Qatar",
+    duration: "Brand Development",
+    description:
+      "Complete brand development and visual identity for Coffee Down Under, an Australian-inspired coffee experience in Qatar. The branding captures the warmth, quality, and authentic coffee culture that defines the Australian café experience.",
+    challenge:
+      "Create a distinctive brand identity that authentically represents Australian coffee culture while appealing to the Qatar market and standing out in a competitive café landscape.",
+    approach:
+      "We developed a comprehensive brand strategy that balanced Australian authenticity with local market appeal, creating visual elements that evoke warmth, quality, and the relaxed café atmosphere.",
+    solution:
+      "The brand identity includes a distinctive logo, warm color palette inspired by Australian landscapes, custom typography, packaging design, menu design, and complete visual guidelines for all touchpoints.",
+    results: [
+      { value: "Complete", label: "Brand Identity" },
+      { value: "Australian", label: "Inspiration" },
+      { value: "Premium", label: "Positioning" },
+      { value: "Distinctive", label: "Visual System" },
+    ],
+    highlights: [
+      "Distinctive logo and visual identity",
+      "Australian-inspired color palette",
+      "Custom typography and design system",
+      "Comprehensive packaging design",
+      "Menu and collateral design",
+      "Complete brand guidelines",
+    ],
+    gallery: [
+      "/images/portfolio/coffee-down-under-1.jpg",
+      "/images/portfolio/coffee-down-under-2.gif",
+      "/images/portfolio/coffee-down-under-3.jpg",
+      "/images/portfolio/coffee-down-under-5.jpg",
+      "/images/portfolio/coffee-down-under-6.jpg",
+      "/images/portfolio/coffee-down-under-7.jpg",
+      "/images/portfolio/coffee-down-under-9.jpg",
+      "/images/portfolio/coffee-down-under-10.jpg",
+      "/images/portfolio/coffee-down-under-11.jpg",
+      "/images/portfolio/coffee-down-under-12.jpg",
+      "/images/portfolio/coffee-down-under-13.jpg",
+      "/images/portfolio/coffee-down-under-14.jpg",
+      "/images/portfolio/coffee-down-under-15.jpg",
+      "/images/portfolio/coffee-down-under-16.jpg",
+      "/images/portfolio/coffee-down-under-17.jpg",
+      "/images/portfolio/coffee-down-under-18.jpg",
+    ],
+    relatedProjects: ["halwa-al-saigal", "greens"],
+  },
+  "investment-trade-court": {
+    title: "Investment & Trade Court",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2023",
+    client: "Investment & Trade Court",
+    location: "Qatar",
+    duration: "Brand Development",
+    description:
+      "Professional brand identity and visual systems development for Qatar's Investment & Trade Court. The branding reflects authority, trust, and professionalism befitting a judicial institution focused on investment and trade matters.",
+    challenge:
+      "Develop a brand identity that conveys authority, trust, and accessibility for a judicial institution, while maintaining the gravitas expected of a court while being approachable for business stakeholders.",
+    approach:
+      "We created a sophisticated visual identity that balances traditional judicial symbolism with modern design principles, reflecting both heritage and forward-thinking approach to investment and trade law.",
+    solution:
+      "The comprehensive brand identity includes a distinctive emblem, professional color palette, custom typography, stationery design, signage systems, and complete visual guidelines for all institutional communications.",
+    results: [
+      { value: "Authority", label: "Conveyed" },
+      { value: "Trust", label: "Established" },
+      { value: "Professional", label: "Identity" },
+      { value: "Complete", label: "Visual System" },
+    ],
+    highlights: [
+      "Distinctive institutional emblem",
+      "Professional color palette",
+      "Custom typography selection",
+      "Complete stationery design",
+      "Signage and wayfinding system",
+      "Comprehensive brand guidelines",
+    ],
+    gallery: Array.from({ length: 33 }, (_, i) =>
+      i === 3
+        ? `/images/portfolio/investment-trade-court-${i + 1}.gif`
+        : `/images/portfolio/investment-trade-court-${i + 1}.jpg`
+    ),
+    relatedProjects: ["greens", "halwa-al-saigal"],
+  },
+  "greens": {
+    title: "Green's",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2023",
+    client: "Green's",
+    location: "Qatar",
+    duration: "Brand Development",
+    description:
+      "Fresh brand identity development for Green's, focusing on healthy lifestyle and sustainable products. The branding embodies freshness, vitality, and environmental consciousness while appealing to health-conscious consumers.",
+    challenge:
+      "Create a brand identity that communicates freshness, health, and sustainability while standing out in the competitive healthy lifestyle market and appealing to environmentally conscious consumers.",
+    approach:
+      "We developed a vibrant visual identity centered on freshness and vitality, using natural colors and organic design elements that reflect the brand's commitment to health and sustainability.",
+    solution:
+      "The brand identity features a fresh logo, natural color palette, organic typography, sustainable packaging design, and comprehensive visual guidelines that extend across all brand touchpoints.",
+    results: [
+      { value: "Fresh", label: "Identity" },
+      { value: "Sustainable", label: "Focus" },
+      { value: "Healthy", label: "Lifestyle" },
+      { value: "Complete", label: "Brand System" },
+    ],
+    highlights: [
+      "Fresh and vibrant logo design",
+      "Natural, organic color palette",
+      "Sustainable packaging design",
+      "Health-focused visual language",
+      "Environmental messaging integration",
+      "Complete brand guidelines",
+    ],
+    gallery: [
+      "/images/portfolio/greens-1.png",
+      "/images/portfolio/greens-2.png",
+      "/images/portfolio/greens-3.png",
+      "/images/portfolio/greens-4.png",
+      "/images/portfolio/greens-5.png",
+      "/images/portfolio/greens-6.png",
+      "/images/portfolio/greens-7.png",
+      "/images/portfolio/greens-8.png",
+      "/images/portfolio/greens-9.png",
+      "/images/portfolio/greens-10.jpg",
+      "/images/portfolio/greens-11.png",
+      "/images/portfolio/greens-12.png",
+      "/images/portfolio/greens-13.png",
+      "/images/portfolio/greens-14.png",
+      "/images/portfolio/greens-15.png",
+      "/images/portfolio/greens-16.png",
+      "/images/portfolio/greens-17.png",
+      "/images/portfolio/greens-18.png",
+      "/images/portfolio/greens-19.png",
+      "/images/portfolio/greens-20.png",
+      "/images/portfolio/greens-21.png",
+      "/images/portfolio/greens-22.png",
+      "/images/portfolio/greens-23.png",
+      "/images/portfolio/greens-24.png",
+      "/images/portfolio/greens-25.png",
+      "/images/portfolio/greens-26.png",
+      "/images/portfolio/greens-27.png",
+      "/images/portfolio/greens-28.png",
+      "/images/portfolio/greens-29.png",
+      "/images/portfolio/greens-30.png",
+      "/images/portfolio/greens-31.png",
+      "/images/portfolio/greens-32.png",
+      "/images/portfolio/greens-33.png",
+    ],
+    relatedProjects: ["coffee-down-under", "halwa-al-saigal"],
+  },
+  "halwa-al-saigal": {
+    title: "Halwa Al Saigal",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2023",
+    client: "Halwa Al Saigal",
+    location: "Qatar",
+    duration: "Brand Development",
+    description:
+      "Traditional Qatari sweets brand identity that celebrates heritage and authentic flavors. The branding honors the rich tradition of Qatari halwa while creating a contemporary visual identity that appeals to modern consumers.",
+    challenge:
+      "Develop a brand identity that authentically represents traditional Qatari confectionery heritage while creating contemporary appeal for a new generation of consumers.",
+    approach:
+      "We blended traditional Qatari design elements with modern branding principles, creating a visual identity that respects heritage while positioning the brand for contemporary market success.",
+    solution:
+      "The brand identity features traditional Arabic calligraphy, heritage-inspired patterns, warm earthy colors, elegant packaging design, and comprehensive guidelines that honor tradition while embracing modernity.",
+    results: [
+      { value: "Heritage", label: "Honored" },
+      { value: "Traditional", label: "Authenticity" },
+      { value: "Modern", label: "Appeal" },
+      { value: "Complete", label: "Brand Identity" },
+    ],
+    highlights: [
+      "Traditional Arabic calligraphy",
+      "Heritage-inspired design patterns",
+      "Warm, earthy color palette",
+      "Elegant packaging design",
+      "Cultural authenticity",
+      "Contemporary market positioning",
+    ],
+    gallery: Array.from({ length: 28 }, (_, i) => `/images/portfolio/halwa-al-saigal-${i + 1}.jpg`),
+    relatedProjects: ["coffee-down-under", "greens"],
+  },
+  "watad-msdf": {
+    title: "WATAD MSDF",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2023",
+    client: "MSDF",
+    location: "Qatar",
+    duration: "Brand Development",
+    description:
+      "Complete brand identity development for WATAD, an MSDF initiative. The branding reflects strength, stability, and purpose, creating a visual identity that resonates with the organization's mission and values.",
+    challenge:
+      "Create a brand identity that communicates strength, stability, and purpose while reflecting MSDF's commitment to social development and community empowerment.",
+    approach:
+      "We developed a powerful visual identity that embodies the meaning of 'Watad' (pillar/stake), using strong geometric forms and purposeful design elements that convey stability and support.",
+    solution:
+      "The brand identity features a bold logo symbolizing strength and support, a confident color palette, strong typography, and comprehensive visual guidelines for all MSDF communications and initiatives.",
+    results: [
+      { value: "Strength", label: "Conveyed" },
+      { value: "Purpose", label: "Defined" },
+      { value: "MSDF", label: "Initiative" },
+      { value: "Complete", label: "Visual Identity" },
+    ],
+    highlights: [
+      "Bold logo symbolizing strength",
+      "Strong geometric design language",
+      "Confident color palette",
+      "Powerful typography selection",
+      "Mission-aligned visual identity",
+      "Complete brand guidelines",
+    ],
+    gallery: [
+      "/images/portfolio/watad-msdf-1.jpg",
+      "/images/portfolio/watad-msdf-2.gif",
+      "/images/portfolio/watad-msdf-3.jpg",
+      "/images/portfolio/watad-msdf-4.jpg",
+      "/images/portfolio/watad-msdf-5.jpg",
+      "/images/portfolio/watad-msdf-6.jpg",
+      "/images/portfolio/watad-msdf-7.jpg",
+      "/images/portfolio/watad-msdf-8.jpg",
+      "/images/portfolio/watad-msdf-9.jpg",
+      "/images/portfolio/watad-msdf-10.jpg",
+      "/images/portfolio/watad-msdf-11.jpg",
+      "/images/portfolio/watad-msdf-12.jpg",
+      "/images/portfolio/watad-msdf-13.jpg",
+      "/images/portfolio/watad-msdf-14.jpg",
+      "/images/portfolio/watad-msdf-15.jpg",
+      "/images/portfolio/watad-msdf-16.jpg",
+      "/images/portfolio/watad-msdf-17.jpg",
+      "/images/portfolio/watad-msdf-18.jpg",
+      "/images/portfolio/watad-msdf-19.jpg",
+      "/images/portfolio/watad-msdf-20.jpg",
+      "/images/portfolio/watad-msdf-21.jpg",
+      "/images/portfolio/watad-msdf-22.jpg",
+      "/images/portfolio/watad-msdf-23.jpg",
+      "/images/portfolio/watad-msdf-24.jpg",
+      "/images/portfolio/watad-msdf-25.jpg",
+      "/images/portfolio/watad-msdf-26.jpg",
+      "/images/portfolio/watad-msdf-27.jpg",
+      "/images/portfolio/watad-msdf-28.jpg",
+    ],
+    relatedProjects: ["msdf-mulhemeen", "ooredoo-yalla-namshi"],
+  },
 };
+
+// Gallery Section Component with Lightbox
+function GallerySection({ gallery, title }: { gallery: string[]; title: string }) {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const openLightbox = (index: number) => {
+    setCurrentIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const goNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % gallery.length);
+  }, [gallery.length]);
+
+  const goPrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
+  }, [gallery.length]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        goPrev();
+      } else if (e.key === "ArrowRight") {
+        goNext();
+      } else if (e.key === "Escape") {
+        closeLightbox();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxOpen, goPrev, goNext]);
+
+  // Show max 8 images in grid, with "view all" if more
+  const displayImages = gallery.slice(0, 8);
+  const hasMore = gallery.length > 8;
+
+  return (
+    <>
+      <section className="py-12 bg-core-black">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {displayImages.map((image, index) => (
+              <GsapScrollReveal key={index} animation="fadeUp" delay={Math.min(index * 0.05, 0.3)}>
+                <button
+                  onClick={() => openLightbox(index)}
+                  className={`relative rounded-lg overflow-hidden bg-gradient-to-br from-purple-dream/20 to-red-spark/20 group cursor-pointer w-full ${
+                    index === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/3]"
+                  }`}
+                >
+                  <Image
+                    src={image}
+                    alt={`${title} - Image ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes={index === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
+                  />
+                  <div className="absolute inset-0 bg-core-black/0 group-hover:bg-core-black/30 transition-colors duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                  {/* Show count on last visible image if there are more */}
+                  {hasMore && index === 7 && (
+                    <div className="absolute inset-0 bg-core-black/60 flex items-center justify-center">
+                      <span className="text-white text-2xl font-bold">+{gallery.length - 8}</span>
+                    </div>
+                  )}
+                </button>
+              </GsapScrollReveal>
+            ))}
+          </div>
+          {hasMore && (
+            <div className="text-center mt-8">
+              <button
+                onClick={() => openLightbox(0)}
+                className="px-6 py-3 border border-white/20 hover:border-red-spark/50 text-white rounded-lg transition-colors hover:bg-white/5"
+              >
+                View All {gallery.length} Images
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-core-black/95 flex items-center justify-center"
+            onClick={closeLightbox}
+          >
+            {/* Close button */}
+            <button
+              onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
+              className="absolute top-4 right-4 z-[60] p-3 bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-all"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Image */}
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="relative w-[80vw] h-[80vh] flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={gallery[currentIndex]}
+                alt={`${title} - Image ${currentIndex + 1}`}
+                fill
+                className="object-contain"
+                sizes="80vw"
+                priority
+              />
+            </motion.div>
+
+            {/* Navigation buttons */}
+            <button
+              onClick={(e) => { e.stopPropagation(); goPrev(); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-[60] p-3 bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-all"
+            >
+              <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); goNext(); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-[60] p-3 bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-all"
+            >
+              <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+
+            {/* Counter */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[60] px-4 py-2 bg-white/10 rounded-full text-white/70 text-sm">
+              {currentIndex + 1} / {gallery.length}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
 
 export default function PortfolioDetailPage() {
   const params = useParams();
@@ -851,35 +1412,7 @@ export default function PortfolioDetailPage() {
       </section>
 
       {/* Gallery Grid */}
-      <section className="py-12 bg-core-black">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {project.gallery.map((image, index) => (
-              <GsapScrollReveal key={index} animation="fadeUp" delay={index * 0.1}>
-                <div
-                  className={`relative rounded-lg overflow-hidden bg-gradient-to-br from-purple-dream/20 to-red-spark/20 ${
-                    index === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/3]"
-                  }`}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center text-white/20">
-                    <svg
-                      className="w-12 h-12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                    >
-                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                      <circle cx="8.5" cy="8.5" r="1.5" />
-                      <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                  </div>
-                </div>
-              </GsapScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <GallerySection gallery={project.gallery} title={project.title} />
 
       {/* Challenge, Approach, Solution */}
       <section className="py-24 bg-gradient-to-b from-core-black to-core-black/95">

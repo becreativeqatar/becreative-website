@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 const PROJECTS = [
@@ -81,6 +82,7 @@ const PROJECTS = [
     year: "2024",
     client: "Al Jazeera Finance",
     description: "Elegant corporate anniversary celebration honoring milestones and achievements.",
+    image: "/images/portfolio/al-jazeera-finance-anniversary-1.jpg",
   },
   {
     id: 8,
@@ -91,6 +93,7 @@ const PROJECTS = [
     year: "2024",
     client: "MCIT",
     description: "Qatar's first e-commerce hackathon bringing together innovators and developers to solve digital commerce challenges.",
+    image: "/images/portfolio/qatar-ecommerce-hackathon-1.jpg",
   },
   {
     id: 9,
@@ -101,6 +104,7 @@ const PROJECTS = [
     year: "2024",
     client: "MSDF",
     description: "Inspiring event celebrating achievers and showcasing stories of success and determination.",
+    image: "/images/portfolio/msdf-mulhemeen-1.jpg",
   },
   {
     id: 10,
@@ -111,6 +115,7 @@ const PROJECTS = [
     year: "2024",
     client: "Ooredoo / MSDF",
     description: "Collaborative wellness and community event promoting active lifestyle and social connection.",
+    image: "/images/portfolio/ooredoo-yalla-namshi-1.jpg",
   },
   // BRANDING
   {
@@ -122,6 +127,7 @@ const PROJECTS = [
     year: "2024",
     client: "MSDF",
     description: "Complete brand identity development including visual systems, guidelines, and marketing collateral.",
+    image: "/images/portfolio/watad-msdf-1.jpg",
   },
   {
     id: 12,
@@ -132,6 +138,7 @@ const PROJECTS = [
     year: "2024",
     client: "Coffee Down Under",
     description: "Brand development and visual identity for Australian-inspired coffee experience in Qatar.",
+    image: "/images/portfolio/coffee-down-under-1.jpg",
   },
   {
     id: 13,
@@ -142,6 +149,7 @@ const PROJECTS = [
     year: "2024",
     client: "Halwa Al Saigal",
     description: "Traditional Qatari sweets brand identity celebrating heritage and authentic flavors.",
+    image: "/images/portfolio/halwa-al-saigal-1.jpg",
   },
   {
     id: 14,
@@ -162,6 +170,7 @@ const PROJECTS = [
     year: "2024",
     client: "Investment & Trade Court",
     description: "Professional brand identity and visual systems for Qatar's investment and trade judicial body.",
+    image: "/images/portfolio/investment-trade-court-1.jpg",
   },
   {
     id: 16,
@@ -172,6 +181,7 @@ const PROJECTS = [
     year: "2024",
     client: "Green's",
     description: "Fresh brand identity development for healthy lifestyle and sustainable products.",
+    image: "/images/portfolio/greens-1.png",
   },
   {
     id: 17,
@@ -353,14 +363,23 @@ export default function PortfolioPage() {
                     className="group block bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-red-spark/50 transition-all duration-300 hover:glow-red shine-effect"
                   >
                     {/* Image */}
-                    <div className="aspect-[16/10] bg-gradient-to-br from-purple-dream/20 to-red-spark/20 relative">
+                    <div className="aspect-[16/10] bg-gradient-to-br from-purple-dream/20 to-red-spark/20 relative overflow-hidden">
+                      {"image" in project && project.image && (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-core-black/30 group-hover:bg-core-black/10 transition-colors" />
-                      <div className="absolute top-4 left-4">
+                      <div className="absolute top-4 left-4 z-10">
                         <span className="px-3 py-1 bg-core-black/80 text-red-spark text-xs font-medium rounded-full">
                           {project.year}
                         </span>
                       </div>
-                      <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-red-spark">
+                      <div className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-red-spark">
                         <svg
                           className="w-5 h-5 text-white"
                           viewBox="0 0 24 24"
