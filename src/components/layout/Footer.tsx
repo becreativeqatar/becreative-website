@@ -130,10 +130,10 @@ export default function Footer() {
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
                 <a
-                  href="mailto:info@becreative.qa"
+                  href="mailto:info@bce.qa"
                   className="text-text-muted hover:text-white text-sm transition-colors"
                 >
-                  info@becreative.qa
+                  info@bce.qa
                 </a>
               </li>
               <li className="flex items-start gap-3">

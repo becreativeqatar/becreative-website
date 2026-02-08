@@ -322,10 +322,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-white font-semibold mb-1">Email</h3>
                     <a
-                      href="mailto:info@becreative.qa"
+                      href="mailto:info@bce.qa"
                       className="text-text-muted hover:text-white transition-colors"
                     >
-                      info@becreative.qa
+                      info@bce.qa
                     </a>
                   </div>
                 </div>

@@ -306,7 +306,7 @@ export default function CareersPage() {
                         ))}
                       </ul>
                       <a
-                        href={`mailto:careers@becreative.qa?subject=Application for ${job.title}`}
+                        href={`mailto:careers@bce.qa?subject=Application for ${job.title}`}
                         className="inline-flex items-center gap-2 px-6 py-3 bg-red-spark hover:bg-red-spark/90 text-white font-medium rounded transition-all duration-300"
                       >
                         Apply Now
@@ -347,7 +347,7 @@ export default function CareersPage() {
               your resume and let us know how you can contribute to our team.
             </p>
             <a
-              href="mailto:careers@becreative.qa"
+              href="mailto:careers@bce.qa"
               className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 hover:border-white/40 text-white font-medium rounded transition-all duration-300 hover:bg-white/5"
             >
               Send Your Resume

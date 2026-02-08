@@ -24,6 +24,284 @@ const TEAM_MEMBERS: Record<
     quote?: string;
   }
 > = {
+  "marie-line-halabi": {
+    name: "Marie Line Halabi",
+    role: "Chief Executive Officer",
+    department: "Executive",
+    bio: "With over 20 years of experience in event conceptualization, production, and delivery in Qatar, Marie Line has successfully led and executed high-profile projects across cultural, corporate, entertainment and sports sectors.",
+    fullBio:
+      "With over 20 years of experience in event conceptualization, production, and delivery in Qatar, Marie Line has successfully led and executed high-profile projects across cultural, corporate, entertainment and sports sectors. Her work reflects a commitment to excellence, creativity, and meticulous attention to detail — qualities she now brings to Be Creative Events.\n\nMarie Line was a founding partner of AND Marketing and Events and served as CEO, where she played a central role in delivering major events for clients across diverse industries. Some of the most recent projects were Al Samri Night, the first concert ever held in Qatar between the dunes, the Sealine Season 2025, and the Event Management for the Horticultural Expo Doha 2023.\n\nIn parallel with founding and managing AND Marketing and Events, Marie Line handled the position of CEO for Aljassra Group from 2022 to 2025, where she successfully managed a diverse portfolio of companies such as facility management, security, events and marketing, food and beverages, retail operations, asset management, fit-out and contracting, and manufacturing, scoring the highest yearly revenue and profit ever made in the group for two consecutive years.\n\nMarie Line has also served as Acting Director of Sports Events department at Qatar Olympic Committee and Director of Planning and Operations for the IAAF World Championships 2019, the IHF World Handball Championships 2015, the AIBA Boxing World Championships 2016, the IPC World Championships 2016, Casa Qatar in Rio Olympics 2016, and many more international and regional events.\n\nShe also worked at Fitch Qatar for seven years, where she managed branding and retail design projects for the most prestigious brands in Qatar such as Qatar Foundation, the Doha Asian Games 2006, Qatar Science and Technology Park, Hamad Medical Corporation, Qatar Faculty of Islamic Studies, Qatar Red Crescent, Mada, and many more.\n\nMarie Line contributed to setting the stage for the FIFA World Cup by establishing the first international fan zone in Qatar in 2014. She also contributed to establishing the first braille signage in Qatar and the first website with AAA accessibility, enhancing special needs' journeys in Qatar.\n\nMarie Line has recently acquired Be Creative to elevate it to one of the leading events companies in Qatar.",
+    experience: [
+      {
+        title: "Chief Executive Officer",
+        company: "Be Creative Events",
+        years: "2025 - Present",
+      },
+      {
+        title: "Chief Executive Officer",
+        company: "Al Jassra Group",
+        years: "2022 - 2025",
+      },
+      {
+        title: "Chief Executive Officer",
+        company: "Al Jassra Corporate Service",
+        years: "2020 - 2025",
+      },
+      {
+        title: "Chief Executive Officer",
+        company: "AND Marketing & Events",
+        years: "2020 - 2025",
+      },
+      {
+        title: "Director Planning and Operation Committee",
+        company: "LOC IAAF World Athletics Championships Doha 2019",
+        years: "2017 - 2018",
+      },
+      {
+        title: "Director of Sports Events Department",
+        company: "Qatar Olympic Committee",
+        years: "2015 - 2017",
+      },
+      {
+        title: "Marketing Advisor",
+        company: "Eljaish Sports Club Qatar",
+        years: "2011 - 2016",
+      },
+      {
+        title: "Director of Planning and Follow up",
+        company: "AIBA World Boxing Championship Doha 2015",
+        years: "2015",
+      },
+      {
+        title: "Director of Planning and Follow up",
+        company: "IPC Athletics World Championships Doha 2015",
+        years: "2015",
+      },
+      {
+        title: "Director of Planning and Follow up",
+        company: "Qatar 2015 - 24th Men's Handball World Championship",
+        years: "2013 - 2015",
+      },
+      {
+        title: "Client Director",
+        company: "Fitch",
+        years: "2005 - 2012",
+      },
+    ],
+    education: [
+      {
+        degree: "Executive Leadership",
+        institution: "International Business Programs",
+        year: "2010",
+      },
+    ],
+    certifications: [
+      "Best 40 Leaders under 40",
+      "Middle East Management Excellence Awards - Team of the Year (Expo 2023)",
+      "Best Sport Brand 2015 (IHF Handball World Championships)",
+    ],
+    notableProjects: [
+      { name: "Al Samri Night", slug: "al-samri-night", role: "Executive Producer" },
+      { name: "Sealine Season 2025", slug: "sealine-season-2025", role: "Event Director" },
+      { name: "Horticultural Expo Doha 2023", slug: "horticultural-expo-doha-2023", role: "Event Management Lead" },
+      { name: "Luminous 2024", slug: "luminous-2024", role: "Executive Producer" },
+      { name: "FANAR Launch", slug: "fanar-launch", role: "Event Director" },
+    ],
+    skills: ["Event Conceptualization", "Strategic Leadership", "Brand Activation", "Sports Event Management", "Cultural Events", "Government Relations"],
+    languages: ["Arabic (Native)", "English (Fluent)", "French (Fluent)"],
+    linkedin: "https://linkedin.com",
+    email: "marieline@bce.qa",
+    quote: "Every event is an opportunity to create lasting memories and celebrate identity.",
+  },
+  "roy-tawk": {
+    name: "Roy Tawk",
+    role: "Architect & Environment Design Manager",
+    department: "Design",
+    bio: "Roy leads our architectural and environment design team, creating immersive spaces and stunning event environments.",
+    fullBio: "Roy Tawk brings his architectural expertise to Be Creative Events, leading the environment design team in creating immersive spaces and stunning event environments. His background in architecture combined with creative vision ensures every event space is both functional and visually spectacular.",
+    experience: [
+      {
+        title: "Architect & Environment Design Manager",
+        company: "Be Creative Events",
+        years: "2024 - Present",
+      },
+    ],
+    education: [
+      {
+        degree: "Architecture",
+        institution: "University",
+        year: "2015",
+      },
+    ],
+    certifications: [],
+    notableProjects: [],
+    skills: ["Architecture", "Environment Design", "3D Visualization", "Space Planning", "Event Design"],
+    languages: ["Arabic (Native)", "English (Fluent)"],
+    linkedin: "https://linkedin.com",
+    email: "roy@bce.qa",
+  },
+  "rawan-lteif": {
+    name: "Rawan Lteif",
+    role: "Client Services Manager",
+    department: "Client Services",
+    bio: "Rawan manages client relationships and ensures exceptional service delivery across all projects.",
+    fullBio: "Rawan Lteif serves as Client Services Manager at Be Creative Events, where she manages client relationships and ensures exceptional service delivery across all projects. Her dedication to client satisfaction and attention to detail make her an invaluable member of the team.",
+    experience: [
+      {
+        title: "Client Services Manager",
+        company: "Be Creative Events",
+        years: "2024 - Present",
+      },
+    ],
+    education: [
+      {
+        degree: "Business Administration",
+        institution: "University",
+        year: "2018",
+      },
+    ],
+    certifications: [],
+    notableProjects: [],
+    skills: ["Client Relations", "Project Management", "Communication", "Problem Solving"],
+    languages: ["Arabic (Native)", "English (Fluent)"],
+    linkedin: "https://linkedin.com",
+    email: "rawan@bce.qa",
+  },
+  "christine-moradian": {
+    name: "Christine Moradian",
+    role: "Talent & Entertainment Manager",
+    department: "Entertainment",
+    bio: "Christine manages talent acquisition and entertainment programming for our events.",
+    fullBio: "Christine Moradian leads talent and entertainment management at Be Creative Events. She is responsible for sourcing, booking, and coordinating performers and entertainment acts that bring our events to life. Her extensive network and expertise ensure world-class entertainment for every occasion.",
+    experience: [
+      {
+        title: "Talent & Entertainment Manager",
+        company: "Be Creative Events",
+        years: "2024 - Present",
+      },
+    ],
+    education: [
+      {
+        degree: "Entertainment Management",
+        institution: "University",
+        year: "2016",
+      },
+    ],
+    certifications: [],
+    notableProjects: [],
+    skills: ["Talent Management", "Entertainment Booking", "Artist Relations", "Event Programming"],
+    languages: ["English (Native)", "Arabic (Conversational)"],
+    linkedin: "https://linkedin.com",
+    email: "christine@bce.qa",
+  },
+  "mohammed-ramees": {
+    name: "Mohammed Ramees",
+    role: "Digital Transformation Lead",
+    department: "Digital",
+    bio: "Mohammed leads digital transformation initiatives, driving innovation across our digital platforms and services.",
+    fullBio: "Mohammed Ramees serves as Digital Transformation Lead at Be Creative Events, driving innovation across digital platforms and services. He oversees website development, digital marketing strategies, and technology integration to ensure Be Creative Events stays at the forefront of digital excellence.",
+    experience: [
+      {
+        title: "Digital Transformation Lead",
+        company: "Be Creative Events",
+        years: "2024 - Present",
+      },
+    ],
+    education: [
+      {
+        degree: "Computer Science",
+        institution: "University",
+        year: "2018",
+      },
+    ],
+    certifications: [],
+    notableProjects: [],
+    skills: ["Digital Strategy", "Web Development", "Technology Integration", "Digital Marketing"],
+    languages: ["English (Fluent)", "Arabic (Conversational)", "Malayalam (Native)"],
+    linkedin: "https://linkedin.com",
+    email: "ramees@bce.qa",
+  },
+  "nida-mehaboob": {
+    name: "Nida Mehaboob",
+    role: "Project Coordinator",
+    department: "Operations",
+    bio: "Nida coordinates project activities and ensures smooth execution of events.",
+    fullBio: "Nida Mehaboob works as Project Coordinator at Be Creative Events, ensuring smooth coordination of project activities and seamless event execution. Her organizational skills and attention to detail help keep projects on track and within scope.",
+    experience: [
+      {
+        title: "Project Coordinator",
+        company: "Be Creative Events",
+        years: "2024 - Present",
+      },
+    ],
+    education: [
+      {
+        degree: "Project Management",
+        institution: "University",
+        year: "2020",
+      },
+    ],
+    certifications: [],
+    notableProjects: [],
+    skills: ["Project Coordination", "Event Planning", "Scheduling", "Team Collaboration"],
+    languages: ["English (Fluent)", "Arabic (Conversational)"],
+    linkedin: "https://linkedin.com",
+    email: "nida@bce.qa",
+  },
+  "alfredo-nolasco": {
+    name: "Alfredo Nolasco",
+    role: "2D/3D Designer",
+    department: "Creative",
+    bio: "Alfredo creates stunning 2D and 3D designs for events and marketing materials.",
+    fullBio: "Alfredo Nolasco is a talented 2D/3D Designer at Be Creative Events, creating stunning visual designs for events, marketing materials, and brand activations. His creative expertise brings concepts to life through compelling visuals and immersive designs.",
+    experience: [
+      {
+        title: "2D/3D Designer",
+        company: "Be Creative Events",
+        years: "2024 - Present",
+      },
+    ],
+    education: [
+      {
+        degree: "Graphic Design",
+        institution: "University",
+        year: "2017",
+      },
+    ],
+    certifications: [],
+    notableProjects: [],
+    skills: ["3D Modeling", "2D Design", "Adobe Creative Suite", "Visualization", "Motion Graphics"],
+    languages: ["English (Fluent)", "Spanish (Native)"],
+    linkedin: "https://linkedin.com",
+    email: "alfredo@bce.qa",
+  },
+  "gracia-isabel-villar": {
+    name: "Gracia Isabel Villar",
+    role: "Finance & HR Admin",
+    department: "Administration",
+    bio: "Gracia manages finance and HR administration, ensuring smooth business operations.",
+    fullBio: "Gracia Isabel Villar handles Finance and HR Administration at Be Creative Events. She ensures smooth business operations by managing financial processes, payroll, and human resources functions that support the entire team.",
+    experience: [
+      {
+        title: "Finance & HR Admin",
+        company: "Be Creative Events",
+        years: "2024 - Present",
+      },
+    ],
+    education: [
+      {
+        degree: "Business Administration",
+        institution: "University",
+        year: "2019",
+      },
+    ],
+    certifications: [],
+    notableProjects: [],
+    skills: ["Financial Management", "HR Administration", "Payroll", "Office Management"],
+    languages: ["English (Fluent)", "Spanish (Native)", "Arabic (Basic)"],
+    linkedin: "https://linkedin.com",
+    email: "gracia@bce.qa",
+  },
   "ahmed-al-thani": {
     name: "Ahmed Al-Thani",
     role: "Founder & CEO",
@@ -78,7 +356,7 @@ const TEAM_MEMBERS: Record<
     skills: ["Strategic Planning", "Client Relations", "Team Leadership", "Budget Management", "Stakeholder Management"],
     languages: ["Arabic (Native)", "English (Fluent)", "French (Conversational)"],
     linkedin: "https://linkedin.com",
-    email: "ahmed@becreative.qa",
+    email: "ahmed@bce.qa",
     quote: "Every event is an opportunity to create lasting memories and meaningful connections.",
   },
   "sarah-mitchell": {
@@ -135,7 +413,7 @@ const TEAM_MEMBERS: Record<
     skills: ["Event Design", "Brand Experience", "3D Visualization", "Art Direction", "Creative Strategy"],
     languages: ["English (Native)", "Arabic (Conversational)"],
     linkedin: "https://linkedin.com",
-    email: "sarah@becreative.qa",
+    email: "sarah@bce.qa",
     quote: "Design is not just what it looks like, it's how it makes people feel.",
   },
   "mohammed-hassan": {
@@ -193,7 +471,7 @@ const TEAM_MEMBERS: Record<
     skills: ["Logistics Management", "Vendor Relations", "Risk Management", "Budget Control", "Team Leadership"],
     languages: ["Arabic (Native)", "English (Fluent)", "Urdu (Conversational)"],
     linkedin: "https://linkedin.com",
-    email: "mohammed@becreative.qa",
+    email: "mohammed@bce.qa",
     quote: "Success is in the details. Every great event is built on a foundation of meticulous planning.",
   },
   "fatima-al-kuwari": {
@@ -250,7 +528,7 @@ const TEAM_MEMBERS: Record<
     skills: ["Client Management", "Negotiation", "Communication", "Problem Solving", "Cultural Intelligence"],
     languages: ["Arabic (Native)", "English (Fluent)", "French (Fluent)"],
     linkedin: "https://linkedin.com",
-    email: "fatima@becreative.qa",
+    email: "fatima@bce.qa",
     quote: "The best events come from truly understanding what matters to our clients.",
   },
   "james-okonkwo": {
@@ -308,7 +586,7 @@ const TEAM_MEMBERS: Record<
     skills: ["AV Engineering", "Lighting Design", "Projection Mapping", "Drone Operations", "Technical Planning"],
     languages: ["English (Native)", "Arabic (Basic)"],
     linkedin: "https://linkedin.com",
-    email: "james@becreative.qa",
+    email: "james@bce.qa",
     quote: "Technology should enhance the human experience, not overshadow it.",
   },
   "layla-ahmed": {
@@ -366,7 +644,7 @@ const TEAM_MEMBERS: Record<
     skills: ["Brand Strategy", "Digital Marketing", "Content Creation", "Analytics", "Public Relations"],
     languages: ["Arabic (Native)", "English (Fluent)", "Spanish (Conversational)"],
     linkedin: "https://linkedin.com",
-    email: "layla@becreative.qa",
+    email: "layla@bce.qa",
     quote: "Great marketing tells the story of the experiences we create.",
   },
 };
@@ -563,7 +841,7 @@ export default function TeamMemberPage() {
             {/* Certifications */}
             <div>
               <GsapScrollReveal animation="fadeUp">
-                <h2 className="text-2xl font-bold text-white mb-8">Certifications</h2>
+                <h2 className="text-2xl font-bold text-white mb-8">Awards & Recognitions</h2>
               </GsapScrollReveal>
               <div className="space-y-3">
                 {member.certifications.map((cert, index) => (

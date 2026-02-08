@@ -106,36 +106,32 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
             >
               <span className="text-red-spark text-sm font-medium tracking-widest uppercase">
-                Our Story
+                Who We Are
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-6">
-                Our Story
+                About Be Creative Events
               </h2>
               <div className="space-y-4 text-text-muted">
+                <p>
+                  Be Creative Events is a Qatar-based creative events agency founded
+                  in 2018, by Mr. Ramzan Al Nuaimi, backed by a leading team with over
+                  20 years of global experience in events and branding.
+                </p>
+                <p>
+                  We specialize in immersive event management, destination creation,
+                  brand creation and brand activation — with a signature approach that
+                  blends innovation with authentic Qatari culture.
+                </p>
+                <p>
+                  From festivals and fanzones to major public events, we craft powerful
+                  experiences that connect audiences and celebrate identity.
+                </p>
                 <p>
                   Be Creative Events is a dynamic company specializing in curating
                   unforgettable events and immersive experiences. Operating at the
                   intersection of creativity, innovation, cultural storytelling, and
                   flawless execution, we deliver tailor-made solutions for clients
                   seeking memorable experiences.
-                </p>
-                <p>
-                  Founded in 2018 by Mr. Ramzan Al Nuaimi in Doha, Qatar, Be Creative
-                  Events is backed by a leading team with over 20 years of glocal
-                  experience in events and branding.
-                </p>
-                <p>
-                  We specialize in immersive event management, destination creation,
-                  brand creation and brand activation — with a signature approach that
-                  blends innovation with authentic Qatari culture. From festivals and
-                  fanzones to major public events, we craft powerful experiences that
-                  connect audiences and celebrate identity.
-                </p>
-                <p>
-                  Under the leadership of CEO Marie Line Halabi, an award-winning
-                  industry leader with over 20 years of experience who recently acquired
-                  Be Creative Events, the company continues to redefine the boundaries
-                  of what&apos;s possible in event management.
                 </p>
               </div>
             </motion.div>

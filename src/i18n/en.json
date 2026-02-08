@@ -19,10 +19,12 @@
     "cta": "View Our Work"
   },
   "about": {
-    "title": "About Us",
-    "subtitle": "Our Story",
-    "story": "Be Creative Events is a dynamic company specializing in curating unforgettable events and immersive experiences. Founded in 2018 by Mr. Ramzan Al Nuaimi in Doha, Qatar, we are backed by a leading team with over 20 years of glocal experience in events and branding.",
-    "description": "Operating at the intersection of creativity, innovation, cultural storytelling, and flawless execution, we deliver tailor-made solutions for clients seeking memorable experiences. We specialize in immersive event management, destination creation, brand creation and brand activation — with a signature approach that blends innovation with authentic Qatari culture. From festivals and fanzones to major public events, we craft powerful experiences that connect audiences and celebrate identity.",
+    "title": "About Be Creative Events",
+    "subtitle": "Who We Are",
+    "founding": "Be Creative Events is a Qatar-based creative events agency founded in 2018, by Mr. Ramzan Al Nuaimi, backed by a leading team with over 20 years of global experience in events and branding.",
+    "specialty": "We specialize in immersive event management, destination creation, brand creation and brand activation — with a signature approach that blends innovation with authentic Qatari culture.",
+    "mission_statement": "From festivals and fanzones to major public events, we craft powerful experiences that connect audiences and celebrate identity.",
+    "description": "Be Creative Events is a dynamic company specializing in curating unforgettable events and immersive experiences. Operating at the intersection of creativity, innovation, cultural storytelling, and flawless execution, we deliver tailor-made solutions for clients seeking memorable experiences.",
     "vision": "To be the region's leading experience creators — redefining the boundaries of events by transforming spaces, stories, and cultural identity into unforgettable journeys.",
     "mission": "To create exceptional events and experiences that inspire, connect, and leave a lasting impact — blending creativity, culture, and precision to bring ideas to life.",
     "founded": "Founded 2018",
@@ -56,7 +58,7 @@
     },
     "branding": {
       "title": "Branding",
-      "description": "Brand Development, Strategy & Positioning, Brand Guidelines, Visual Identity, Marketing Campaigns, Packaging, Space Design, Interior Design"
+      "description": "Brand Development, Strategy & Positioning, Brand Guidelines, Visual Identity, Marketing Campaigns, Packaging, Space Design"
     },
     "mediaProduction": {
       "title": "Media Production",
@@ -100,8 +102,8 @@
     "address": "Rafal Tower, 9th Floor, Lusail, Doha, Qatar",
     "phone1": "+974 4008 5557",
     "phone2": "+974 6000 0401",
-    "email": "info@becreative.qa",
-    "website": "www.becreative.qa"
+    "email": "info@bce.qa",
+    "website": "www.bce.qa"
   },
   "footer": {
     "tagline": "Be Memorable. Celebrating Brands for the Love of Qatar.",

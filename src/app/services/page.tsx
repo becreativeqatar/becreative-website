@@ -41,7 +41,6 @@ const serviceDetails: Record<string, { icon: ReactNode; features: string[] }> = 
       "Marketing Campaigns",
       "Packaging Design",
       "Space Design",
-      "Interior Design",
     ],
   },
   "media-production": {

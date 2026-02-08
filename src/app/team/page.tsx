@@ -37,6 +37,58 @@ const LEADERSHIP = [
   },
 ];
 
+const TEAM_MEMBERS = [
+  {
+    id: 2,
+    slug: "rawan-lteif",
+    name: "Rawan Lteif",
+    role: "Client Services Manager",
+    email: "rawan@bce.qa",
+  },
+  {
+    id: 3,
+    slug: "christine-moradian",
+    name: "Christine Moradian",
+    role: "Talent & Entertainment Manager",
+    email: "christine@bce.qa",
+  },
+  {
+    id: 4,
+    slug: "nida-mehaboob",
+    name: "Nida Mehaboob",
+    role: "Project Coordinator",
+    email: "nida@bce.qa",
+  },
+  {
+    id: 5,
+    slug: "mohammed-ramees",
+    name: "Mohammed Ramees",
+    role: "Digital Transformation Lead",
+    email: "ramees@bce.qa",
+  },
+  {
+    id: 6,
+    slug: "gracia-isabel-villar",
+    name: "Gracia Isabel Villar",
+    role: "Finance & HR Admin",
+    email: "gracia@bce.qa",
+  },
+  {
+    id: 7,
+    slug: "roy-tawk",
+    name: "Roy Tawk",
+    role: "Architect & Environment Design Manager",
+    email: "roy@bce.qa",
+  },
+  {
+    id: 8,
+    slug: "alfredo-nolasco",
+    name: "Alfredo Nolasco",
+    role: "2D/3D Designer",
+    email: "alfredo@bce.qa",
+  },
+];
+
 export default function TeamPage() {
   return (
     <>
@@ -172,7 +224,7 @@ export default function TeamPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
+            className="text-center mb-12"
           >
             <span className="text-red-spark text-sm font-medium tracking-widest uppercase">
               Our Team
@@ -180,31 +232,62 @@ export default function TeamPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-4 mb-6">
               The Creative Force
             </h2>
-            <p className="text-text-muted text-lg mb-8">
+            <p className="text-text-muted text-lg max-w-2xl mx-auto">
               Behind every successful event is a dedicated team of creative professionals,
-              project managers, designers, and production specialists. Our diverse team
-              combines local expertise with international experience to deliver
-              exceptional results for every client.
+              project managers, designers, and production specialists.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">50+</div>
-                <div className="text-text-muted text-sm">Team Members</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">15+</div>
-                <div className="text-text-muted text-sm">Nationalities</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">200+</div>
-                <div className="text-text-muted text-sm">Events Delivered</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-white mb-2">6+</div>
-                <div className="text-text-muted text-sm">Years of Excellence</div>
-              </div>
-            </div>
           </motion.div>
+
+          {/* Team Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {TEAM_MEMBERS.map((member, index) => (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Link
+                  href={`/team/${member.slug}`}
+                  className="group block p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-spark/50 transition-all duration-300"
+                >
+                  {/* Avatar */}
+                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-purple-dream/30 to-red-spark/30 rounded-full flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white/40 group-hover:text-white/60 transition-colors">
+                      {member.name.split(" ").map((n) => n[0]).join("")}
+                    </span>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-lg font-semibold text-white group-hover:text-red-spark transition-colors">
+                      {member.name}
+                    </h3>
+                    <p className="text-text-muted text-sm mt-1">{member.role}</p>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-white mb-2">50+</div>
+              <div className="text-text-muted text-sm">Team Members</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-white mb-2">15+</div>
+              <div className="text-text-muted text-sm">Nationalities</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-white mb-2">200+</div>
+              <div className="text-text-muted text-sm">Events Delivered</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-white mb-2">6+</div>
+              <div className="text-text-muted text-sm">Years of Excellence</div>
+            </div>
+          </div>
         </div>
       </section>
 

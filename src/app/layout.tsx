@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "Be Creative Events | Be Memorable",
     description:
       "Qatar's premier creative events agency. Celebrating Brands for the Love of Qatar.",
-    url: "https://becreative.qa",
+    url: "https://bce.qa",
     siteName: "Be Creative Events",
     locale: "en_US",
     type: "website",
