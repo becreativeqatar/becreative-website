@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Colors */
+  --red-spark: #E0251C;
+  --core-black: #101820;
+  --purple-dream: #8232A7;
+  --desert-dune: #D7D1CA;
+
+  /* Extended Palette */
+  --white: #FFFFFF;
+  --text-light: #F5F5F5;
+  --text-muted: #999999;
+
+  /* Defaults */
+  --background: var(--core-black);
+  --foreground: var(--text-light);
+}
+
+@theme inline {
+  /* Brand Colors */
+  --color-red-spark: var(--red-spark);
+  --color-core-black: var(--core-black);
+  --color-purple-dream: var(--purple-dream);
+  --color-desert-dune: var(--desert-dune);
+  --color-text-light: var(--text-light);
+  --color-text-muted: var(--text-muted);
+
+  /* Semantic Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Fonts */
+  --font-sans: var(--font-codec-pro), system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  /* Container */
+  --container-padding: 1.5rem;
+  --container-max-width-sm: 640px;
+  --container-max-width-md: 768px;
+  --container-max-width-lg: 1024px;
+  --container-max-width-xl: 1280px;
+  --container-max-width-2xl: 1400px;
+}
+
+/* Container utility */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width-2xl);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Selection color */
+::selection {
+  background: var(--red-spark);
+  color: white;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--core-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--red-spark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-dream);
+}
+
+/* Text animation keyframes */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes glitch-1 {
+  0%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  20% {
+    clip-path: inset(20% 0 60% 0);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(2px, -2px);
+  }
+  60% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    clip-path: inset(80% 0 0% 0);
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes glitch-2 {
+  0%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  20% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(20% 0 60% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(80% 0 0% 0);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(-2px, 2px);
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-glitch-1 {
+  animation: glitch-1 2s infinite linear;
+}
+
+.animate-glitch-2 {
+  animation: glitch-2 2s infinite linear;
+  animation-delay: 0.1s;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(16, 24, 32, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glow effects */
+.glow-red {
+  box-shadow: 0 0 20px rgba(224, 37, 28, 0.3);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(130, 50, 167, 0.3);
+}
+
+.glow-red-intense {
+  box-shadow: 0 0 30px rgba(224, 37, 28, 0.4), 0 0 60px rgba(224, 37, 28, 0.2);
+}
+
+.glow-purple-intense {
+  box-shadow: 0 0 30px rgba(130, 50, 167, 0.4), 0 0 60px rgba(130, 50, 167, 0.2);
+}
+
+/* Hover glow transitions */
+.hover-glow-red {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow-red:hover {
+  box-shadow: 0 0 25px rgba(224, 37, 28, 0.4);
+}
+
+.hover-glow-purple:hover {
+  box-shadow: 0 0 25px rgba(130, 50, 167, 0.4);
+}
+
+/* Text glow */
+.text-glow-red {
+  text-shadow: 0 0 10px rgba(224, 37, 28, 0.5);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(130, 50, 167, 0.5);
+}
+
+/* Border glow animation */
+@keyframes border-glow {
+  0%, 100% {
+    border-color: rgba(224, 37, 28, 0.3);
+    box-shadow: 0 0 5px rgba(224, 37, 28, 0.2);
+  }
+  50% {
+    border-color: rgba(224, 37, 28, 0.6);
+    box-shadow: 0 0 20px rgba(224, 37, 28, 0.4);
+  }
+}
+
+.animate-border-glow {
+  animation: border-glow 2s ease-in-out infinite;
+}
+
+/* Shine effect for cards */
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shine 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html.lenis, html.lenis body {
+    scroll-behavior: auto;
+  }
+}

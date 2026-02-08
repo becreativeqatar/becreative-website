@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "title": "Be Creative Events | Premier Event Management in Qatar",
+    "description": "Be Creative Events is Qatar's premier creative events agency specializing in immersive event management, destination creation, brand creation and brand activation. Where Vision Meets Execution."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "team": "Team",
+    "careers": "Careers",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "Be Memorable",
+    "title": "Celebrating Brands for the Love of Qatar",
+    "subtitle": "Qatar's premier creative events agency. We specialize in immersive event management, destination creation, brand creation and brand activation — blending innovation with authentic Qatari culture.",
+    "cta": "View Our Work"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Our Story",
+    "story": "Be Creative Events is a dynamic company specializing in curating unforgettable events and immersive experiences. Founded in 2018 by Mr. Ramzan Al Nuaimi in Doha, Qatar, we are backed by a leading team with over 20 years of glocal experience in events and branding.",
+    "description": "Operating at the intersection of creativity, innovation, cultural storytelling, and flawless execution, we deliver tailor-made solutions for clients seeking memorable experiences. We specialize in immersive event management, destination creation, brand creation and brand activation — with a signature approach that blends innovation with authentic Qatari culture. From festivals and fanzones to major public events, we craft powerful experiences that connect audiences and celebrate identity.",
+    "vision": "To be the region's leading experience creators — redefining the boundaries of events by transforming spaces, stories, and cultural identity into unforgettable journeys.",
+    "mission": "To create exceptional events and experiences that inspire, connect, and leave a lasting impact — blending creativity, culture, and precision to bring ideas to life.",
+    "founded": "Founded 2018",
+    "founder": "Mr. Ramzan Al Nuaimi",
+    "ceo": "Marie Line Halabi"
+  },
+  "values": {
+    "excellence": {
+      "title": "Excellence",
+      "description": "Committed to delivering the highest quality in every project"
+    },
+    "innovation": {
+      "title": "Innovation",
+      "description": "Pushing creative boundaries to create unique experiences"
+    },
+    "integrity": {
+      "title": "Integrity",
+      "description": "Building trust through transparency and reliability"
+    },
+    "passion": {
+      "title": "Passion",
+      "description": "Driven by love for creating memorable moments"
+    }
+  },
+  "services": {
+    "title": "What We Can Do For You",
+    "subtitle": "Four Pillars of Excellence",
+    "events": {
+      "title": "Events",
+      "description": "Event Planning & Management, Festival & Live Show Production, Sports Event Management, Corporate Events & Fanzones, Immersive Experience Design, Destination Creation, Brand & Venue Activation, Cultural Integration & Storytelling"
+    },
+    "branding": {
+      "title": "Branding",
+      "description": "Brand Development, Strategy & Positioning, Brand Guidelines, Visual Identity, Marketing Campaigns, Packaging, Space Design, Interior Design"
+    },
+    "mediaProduction": {
+      "title": "Media Production",
+      "description": "Photography, Film & Video Content Production, Illustration, 2D & 3D Animation, Motion Graphics, Voice-overs, Post Production & VFX"
+    },
+    "digital": {
+      "title": "Digital",
+      "description": "Social Media Management, Social Media Advertising, Digital Marketing, SEO, Search Engine Advertising, Website Design & Development, iOS & Android Applications"
+    }
+  },
+  "portfolio": {
+    "title": "Be Enjoyed",
+    "subtitle": "Have a Look at Events Our Team Enjoyed Delivering",
+    "viewCase": "View Case Study",
+    "filterAll": "All",
+    "clients": {
+      "government": "Government Clients",
+      "sports": "Sports Organizations",
+      "corporate": "Corporate Partners",
+      "hospitality": "Luxury & Hospitality"
+    }
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "subtitle": "The Creative Force Behind Your Events",
+    "leadership": "Meet the CEO",
+    "ceoTitle": "Chief Executive Officer",
+    "experience": "20+ Years Experience"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Let's Create Something Amazing",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "service": "Service Type",
+      "message": "Your Message",
+      "submit": "Send Message"
+    },
+    "address": "Rafal Tower, 9th Floor, Lusail, Doha, Qatar",
+    "phone1": "+974 4008 5557",
+    "phone2": "+974 6000 0401",
+    "email": "info@becreative.qa",
+    "website": "www.becreative.qa"
+  },
+  "footer": {
+    "tagline": "Be Memorable. Celebrating Brands for the Love of Qatar.",
+    "copyright": "© {year} Be Creative Events. All rights reserved."
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "backToTop": "Back to Top"
+  }
+}

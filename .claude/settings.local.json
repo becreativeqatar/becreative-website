@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(powershell -Command \"cd ''D:\\\\Projects\\\\becreative-website\\\\src''; npm run dev\")",
+      "Bash(powershell -Command \"Get-Command node -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source; Get-Command npm -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source; [Environment]::GetEnvironmentVariable\\(''PATH'', ''User''\\); [Environment]::GetEnvironmentVariable\\(''PATH'', ''Machine''\\)\")",
+      "Bash(powershell -Command:*)",
+      "Bash(cmd.exe /c \"cd /d D:\\\\Projects\\\\becreative-website\\\\src && npm run dev\")",
+      "Bash(cmd.exe /c \"cd /d D:\\\\Projects\\\\becreative-website\\\\src & npm run dev\")",
+      "Bash(cmd.exe /c \"where npm && where node\")",
+      "Bash(powershell:*)",
+      "Bash(dir:*)",
+      "Bash(timeout:*)",
+      "Bash(pushd:*)",
+      "Bash(unzip:*)",
+      "Bash(git init:*)",
+      "Bash(git config:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
