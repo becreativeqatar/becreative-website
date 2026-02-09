@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="bg-core-black border-t border-white/10">
       {/* Main Footer */}
       <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/">
@@ -33,7 +33,7 @@ export default function Footer() {
                 href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-red-spark flex items-center justify-center text-text-muted hover:text-white transition-all duration-300"
+                className="w-11 h-11 rounded-full bg-white/5 hover:bg-red-spark flex items-center justify-center text-text-muted hover:text-white transition-all duration-300"
                 aria-label="Instagram"
                 data-cursor="hover"
               >
@@ -45,7 +45,7 @@ export default function Footer() {
                 href={SOCIAL_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-red-spark flex items-center justify-center text-text-muted hover:text-white transition-all duration-300"
+                className="w-11 h-11 rounded-full bg-white/5 hover:bg-red-spark flex items-center justify-center text-text-muted hover:text-white transition-all duration-300"
                 aria-label="LinkedIn"
                 data-cursor="hover"
               >
@@ -57,7 +57,7 @@ export default function Footer() {
                 href={SOCIAL_LINKS.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-red-spark flex items-center justify-center text-text-muted hover:text-white transition-all duration-300"
+                className="w-11 h-11 rounded-full bg-white/5 hover:bg-red-spark flex items-center justify-center text-text-muted hover:text-white transition-all duration-300"
                 aria-label="X (Twitter)"
                 data-cursor="hover"
               >
@@ -76,7 +76,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-text-muted hover:text-white text-sm transition-colors duration-200"
+                    className="text-text-muted hover:text-white text-sm transition-colors duration-200 py-1 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -93,7 +93,7 @@ export default function Footer() {
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="text-text-muted hover:text-white text-sm transition-colors duration-200"
+                    className="text-text-muted hover:text-white text-sm transition-colors duration-200 py-1 inline-block"
                   >
                     {service.title}
                   </Link>

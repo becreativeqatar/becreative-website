@@ -63,7 +63,7 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-32 bg-core-black relative overflow-hidden"
+      className="py-16 md:py-32 bg-core-black relative overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -148,13 +148,15 @@ export default function TestimonialsSection() {
               <button
                 key={index}
                 onClick={() => setCurrent(index)}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
+                className="relative flex items-center justify-center min-w-[44px] min-h-[44px]"
+                aria-label={`Go to testimonial ${index + 1}`}
+              >
+                <span className={`block h-1.5 rounded-full transition-all duration-500 ${
                   current === index
                     ? "w-8 bg-gradient-to-r from-red-spark to-purple-dream"
                     : "w-1.5 bg-white/20 hover:bg-white/30"
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
+                }`} />
+              </button>
             ))}
           </div>
 
@@ -164,7 +166,7 @@ export default function TestimonialsSection() {
               onClick={() =>
                 setCurrent((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
               }
-              className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] flex items-center justify-center text-white/50 hover:text-white transition-all duration-300"
+              className="w-11 h-11 rounded-full bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] flex items-center justify-center text-white/50 hover:text-white transition-all duration-300"
               aria-label="Previous testimonial"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -173,7 +175,7 @@ export default function TestimonialsSection() {
             </button>
             <button
               onClick={() => setCurrent((prev) => (prev + 1) % TESTIMONIALS.length)}
-              className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] flex items-center justify-center text-white/50 hover:text-white transition-all duration-300"
+              className="w-11 h-11 rounded-full bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] flex items-center justify-center text-white/50 hover:text-white transition-all duration-300"
               aria-label="Next testimonial"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

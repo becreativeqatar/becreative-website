@@ -114,7 +114,7 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <section className="py-24 bg-core-black">
         <div className="container mx-auto px-6">
-          <div className="space-y-24">
+          <div className="space-y-12 md:space-y-24">
             {SERVICES.map((service, index) => (
               <motion.div
                 key={service.slug}

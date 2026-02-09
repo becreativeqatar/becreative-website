@@ -33,15 +33,43 @@ const brandColors = [
   '#6366F1',
 ];
 
-// Letter configurations for "BCE"
-const letters = ['B', 'C', 'E'];
-const letterColors = ['#E0251C', '#8232A7', '#FFFFFF'];
+// Letter configurations for "BE CREATIVE EVENTS" — single line with spaces
+const letters = ['B', 'E', ' ', 'C', 'R', 'E', 'A', 'T', 'I', 'V', 'E', ' ', 'E', 'V', 'E', 'N', 'T', 'S'];
+// Indices of B, C, E — the initials that form "BCE"
+const highlightIndices = new Set([0, 3, 12]);
+const letterColors = [
+  '#E0251C', '#FFFFFF',        // BE — B highlighted, E normal
+  '',                           // space
+  '#8232A7', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', // CREATIVE — C highlighted
+  '',                           // space
+  '#E0251C', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', // EVENTS — E highlighted
+];
 
-// Controlled chaos positions
+// Controlled chaos positions for all 18 entries (including spaces)
 const chaosPositions = [
-  { x: -200, y: -100, rotation: -25, scale: 0.6 },
-  { x: 240, y: 80, rotation: 20, scale: 0.65 },
-  { x: -150, y: 120, rotation: -15, scale: 0.6 },
+  // B, E
+  { x: -320, y: -220, rotation: -35, scale: 0.5 },
+  { x: 380, y: -160, rotation: 28, scale: 0.55 },
+  // space
+  { x: 0, y: 0, rotation: 0, scale: 1 },
+  // C, R, E, A, T, I, V, E
+  { x: -260, y: 200, rotation: -22, scale: 0.55 },
+  { x: 420, y: 120, rotation: 38, scale: 0.5 },
+  { x: -180, y: -280, rotation: -42, scale: 0.5 },
+  { x: 220, y: 260, rotation: 18, scale: 0.6 },
+  { x: -400, y: 60, rotation: -28, scale: 0.5 },
+  { x: 340, y: -100, rotation: 32, scale: 0.55 },
+  { x: -120, y: 320, rotation: -38, scale: 0.55 },
+  { x: 460, y: -240, rotation: 22, scale: 0.5 },
+  // space
+  { x: 0, y: 0, rotation: 0, scale: 1 },
+  // E, V, E, N, T, S
+  { x: -350, y: -150, rotation: -30, scale: 0.5 },
+  { x: 300, y: 200, rotation: 25, scale: 0.55 },
+  { x: -200, y: 150, rotation: -18, scale: 0.6 },
+  { x: 380, y: -220, rotation: 40, scale: 0.5 },
+  { x: -440, y: -80, rotation: -32, scale: 0.55 },
+  { x: 280, y: 280, rotation: 20, scale: 0.5 },
 ];
 
 export default function CreativeFusionHero() {
@@ -63,7 +91,7 @@ export default function CreativeFusionHero() {
     offset: ['start start', 'end end'],
   });
 
-  const assemblyProgress = useTransform(scrollYProgress, [0, 0.6], [0, 1]);
+  const assemblyProgress = useTransform(scrollYProgress, [0, 0.85], [0, 1]);
 
   useEffect(() => {
     const unsubscribe = assemblyProgress.on('change', (value) => {
@@ -140,7 +168,7 @@ export default function CreativeFusionHero() {
         x: canvasX,
         y: canvasY,
         color: brandColors[Math.floor(Math.random() * brandColors.length)],
-        size: (Math.random() * 20 + 15) * intensity,
+        size: (Math.random() * 8 + 6) * intensity,
         opacity: 0.6 * intensity,
       });
 
@@ -182,12 +210,12 @@ export default function CreativeFusionHero() {
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
       const touch = e.touches[0];
       const dx = touch.clientX - lastPosRef.current.x;
       const dy = touch.clientY - lastPosRef.current.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
+      // Only add paint effect on move, never block native scrolling
       if (dist > 8) {
         addPaintEffect(touch.clientX, touch.clientY, 1);
         lastPosRef.current = { x: touch.clientX, y: touch.clientY };
@@ -203,7 +231,7 @@ export default function CreativeFusionHero() {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('touchstart', handleTouchStart);
 
     // Pause animation when hero is off-screen
@@ -230,7 +258,7 @@ export default function CreativeFusionHero() {
       const width = rect.width;
       const height = rect.height;
 
-      ctx.fillStyle = 'rgba(16, 24, 32, 0.08)';
+      ctx.fillStyle = 'rgba(16, 24, 32, 0.12)';
       ctx.fillRect(0, 0, width, height);
 
       // Draw trails
@@ -354,7 +382,7 @@ export default function CreativeFusionHero() {
     : 1 - Math.pow(-2 * progress + 2, 2) / 2;
 
   return (
-    <section ref={containerRef} className="relative bg-core-black" style={{ height: '200vh' }}>
+    <section ref={containerRef} className="relative bg-core-black" style={{ height: '300vh' }}>
       {/* Sticky container that holds the hero content */}
       <div
         ref={stickyRef}
@@ -369,26 +397,38 @@ export default function CreativeFusionHero() {
 
         {/* Content Layer */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          {/* Animated Letters */}
-          <div className="relative flex items-center justify-center">
+          {/* Animated Letters — "BE CREATIVE EVENTS" single line, BCE highlighted */}
+          <div className="relative flex items-baseline justify-center">
             {letters.map((letter, index) => {
+              if (letter === ' ') {
+                return <span key={index} className="inline-block w-3 sm:w-4 md:w-6 lg:w-8 xl:w-10" />;
+              }
+
+              const isHighlighted = highlightIndices.has(index);
               const chaos = chaosPositions[index];
+              const color = letterColors[index];
               const currentX = chaos.x * (1 - easedProgress);
               const currentY = chaos.y * (1 - easedProgress);
               const currentRotation = chaos.rotation * (1 - easedProgress);
               const currentScale = chaos.scale + (1 - chaos.scale) * easedProgress;
-              const currentOpacity = 0.4 + 0.6 * easedProgress;
+              const currentOpacity = isHighlighted
+                ? 0.5 + 0.5 * easedProgress
+                : 0.3 + 0.5 * easedProgress;
               const currentBlur = (1 - easedProgress) * 4;
 
               return (
                 <motion.span
                   key={index}
-                  className="text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] font-black inline-block select-none"
+                  className={`font-black inline-block select-none ${
+                    isHighlighted
+                      ? 'text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl'
+                      : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
+                  }`}
                   style={{
-                    color: letterColors[index],
-                    textShadow: easedProgress > 0.8
-                      ? `0 0 80px ${letterColors[index]}50, 0 0 120px ${letterColors[index]}30`
-                      : `0 0 40px ${letterColors[index]}20`,
+                    color,
+                    textShadow: isHighlighted && easedProgress > 0.8
+                      ? `0 0 80px ${color}50, 0 0 120px ${color}30`
+                      : `0 0 30px ${color}15`,
                     x: currentX,
                     y: currentY,
                     rotate: currentRotation,
@@ -404,18 +444,19 @@ export default function CreativeFusionHero() {
             })}
           </div>
 
-          {/* Tagline */}
+          {/* Tagline — positioned just below the letters */}
           {easedProgress > 0.9 && (
             <motion.div
-              className="absolute bottom-32 left-1/2 -translate-x-1/2 text-center w-full px-6"
+              className="absolute left-1/2 -translate-x-1/2 text-center w-full px-6"
+              style={{ top: '60%' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              <p className="text-lg md:text-xl lg:text-2xl text-white/70 mb-10 font-light tracking-wide">
-                Premium Event Management in Qatar
+              <p className="text-lg md:text-xl lg:text-2xl text-white/70 mb-8 font-light tracking-wide">
+                Crafting Powerful Experiences That Connect Audiences & Celebrate Identity
               </p>
-              <div className="flex gap-5 justify-center pointer-events-auto">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center pointer-events-auto">
                 <Link
                   href="/portfolio"
                   className="group relative px-8 py-4 bg-white text-core-black font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]"
@@ -472,15 +513,13 @@ export default function CreativeFusionHero() {
             </div>
           </motion.div>
 
-          {/* Paint hint */}
+          {/* Chaos to Order hint — fades out as letters assemble */}
           <motion.div
-            className="absolute top-8 right-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isInitialized ? 0.4 : 0 }}
-            transition={{ delay: 2, duration: 1 }}
+            className="absolute top-24 left-1/2 -translate-x-1/2 z-10"
+            style={{ opacity: isInitialized ? Math.max(0, 1 - easedProgress * 1.5) : 0 }}
           >
-            <span className="text-white/40 text-xs tracking-wide">
-              Move to interact
+            <span className="text-white/70 text-xs sm:text-sm tracking-[0.2em] uppercase font-light">
+              From Chaos to Order
             </span>
           </motion.div>
         </div>

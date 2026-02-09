@@ -131,7 +131,7 @@ export default function HorizontalPortfolioSection() {
       </div>
 
       {/* Horizontal Scroll Container */}
-      <div ref={containerRef} className="relative h-screen overflow-hidden">
+      <div ref={containerRef} className="relative h-[100dvh] overflow-hidden">
         {/* Progress Bar */}
         <div className="absolute top-0 left-0 right-0 h-px bg-white/10 z-20">
           <div

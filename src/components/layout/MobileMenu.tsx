@@ -31,7 +31,7 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
         </Link>
         <button
           onClick={onClose}
-          className="p-2 text-white"
+          className="p-3 text-white"
           aria-label="Close menu"
         >
           <svg
@@ -49,7 +49,7 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex flex-col items-center justify-center h-[calc(100vh-200px)]">
+      <nav className="flex flex-col items-center justify-center h-[calc(100dvh-200px)]">
         {NAV_LINKS.map((link, index) => (
           <motion.div
             key={link.href}
@@ -72,21 +72,21 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
       <div className="absolute bottom-0 left-0 right-0 p-6">
         <div className="flex items-center justify-between">
           {/* Language Switcher */}
-          <div className="flex items-center gap-4 text-sm">
-            <button className="text-white font-medium">EN</button>
+          <div className="flex items-center gap-2 text-sm">
+            <button className="text-white font-medium px-3 py-2 min-w-[44px] min-h-[44px] flex items-center justify-center">EN</button>
             <span className="text-text-muted">/</span>
-            <button className="text-text-muted hover:text-white transition-colors">
+            <button className="text-text-muted hover:text-white transition-colors px-3 py-2 min-w-[44px] min-h-[44px] flex items-center justify-center">
               AR
             </button>
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <a
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-muted hover:text-white transition-colors"
+              className="text-text-muted hover:text-white transition-colors p-2"
               aria-label="Instagram"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -97,7 +97,7 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-muted hover:text-white transition-colors"
+              className="text-text-muted hover:text-white transition-colors p-2"
               aria-label="LinkedIn"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

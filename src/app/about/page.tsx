@@ -63,50 +63,95 @@ const MILESTONES = [
 function InteractiveTimeline() {
   const timelineRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const mobileLineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!timelineRef.current || !lineRef.current) return;
+    if (!timelineRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Animate the timeline line drawing
-      gsap.fromTo(
-        lineRef.current,
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: timelineRef.current,
-            start: "top 60%",
-            end: "bottom 60%",
-            scrub: 0.5,
-          },
+      const mm = gsap.matchMedia();
+
+      // Desktop: center-line timeline
+      mm.add("(min-width: 1024px)", () => {
+        if (lineRef.current) {
+          gsap.fromTo(
+            lineRef.current,
+            { scaleY: 0 },
+            {
+              scaleY: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: timelineRef.current,
+                start: "top 60%",
+                end: "bottom 60%",
+                scrub: 0.5,
+              },
+            }
+          );
         }
-      );
 
-      // Animate each milestone
-      const cards = timelineRef.current?.querySelectorAll(".milestone-card");
-      const dots = timelineRef.current?.querySelectorAll(".milestone-dot");
-
-      cards?.forEach((card, i) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, x: i % 2 === 0 ? -50 : 50, y: 20 },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 75%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
+        const cards = timelineRef.current?.querySelectorAll(".milestone-card");
+        cards?.forEach((card, i) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, x: i % 2 === 0 ? -50 : 50, y: 20 },
+            {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 75%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        });
       });
 
+      // Mobile: left-edge timeline
+      mm.add("(max-width: 1023px)", () => {
+        if (mobileLineRef.current) {
+          gsap.fromTo(
+            mobileLineRef.current,
+            { scaleY: 0 },
+            {
+              scaleY: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: timelineRef.current,
+                start: "top 70%",
+                end: "bottom 70%",
+                scrub: 0.5,
+              },
+            }
+          );
+        }
+
+        const cards = timelineRef.current?.querySelectorAll(".milestone-card");
+        cards?.forEach((card) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, x: 30 },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        });
+      });
+
+      // Dots animate on both
+      const dots = timelineRef.current?.querySelectorAll(".milestone-dot");
       dots?.forEach((dot) => {
         gsap.fromTo(
           dot,
@@ -117,7 +162,7 @@ function InteractiveTimeline() {
             ease: "back.out(2)",
             scrollTrigger: {
               trigger: dot,
-              start: "top 70%",
+              start: "top 75%",
               toggleActions: "play none none none",
             },
           }
@@ -130,7 +175,7 @@ function InteractiveTimeline() {
 
   return (
     <div ref={timelineRef} className="relative">
-      {/* Timeline line with gradient */}
+      {/* Desktop: center timeline line */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px hidden lg:block overflow-hidden">
         <div className="absolute inset-0 bg-white/10" />
         <div
@@ -139,27 +184,43 @@ function InteractiveTimeline() {
         />
       </div>
 
-      <div className="space-y-16">
+      {/* Mobile: left-edge timeline line */}
+      <div className="absolute left-[11px] top-0 bottom-0 w-px lg:hidden overflow-hidden">
+        <div className="absolute inset-0 bg-white/10" />
+        <div
+          ref={mobileLineRef}
+          className="absolute inset-0 bg-gradient-to-b from-red-spark via-purple-dream to-red-spark origin-top"
+        />
+      </div>
+
+      <div className="space-y-10 lg:space-y-16">
         {MILESTONES.map((milestone, index) => (
           <div
             key={milestone.year}
-            className={`flex flex-col lg:flex-row items-center gap-8 ${
+            className={`flex items-start lg:items-center gap-4 lg:gap-8 ${
               index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
             }`}
           >
+            {/* Mobile dot - visible below lg */}
+            <div className="milestone-dot w-6 h-6 rounded-full bg-red-spark shrink-0 lg:hidden ring-4 ring-core-black relative z-10 mt-5" />
+
             <div className={`flex-1 ${index % 2 === 0 ? "lg:text-right" : "lg:text-left"}`}>
-              <div className="milestone-card bg-white/5 p-6 rounded-lg border border-white/10 hover:border-red-spark/30 transition-all duration-300">
-                <div className="text-red-spark font-bold text-3xl mb-2">
-                  {milestone.year}
+              <div className="milestone-card bg-white/5 p-5 lg:p-6 rounded-lg border border-white/10 hover:border-red-spark/30 transition-all duration-300">
+                <div className="flex items-baseline gap-3 lg:block">
+                  <div className="text-red-spark font-bold text-2xl lg:text-3xl mb-0 lg:mb-2">
+                    {milestone.year}
+                  </div>
+                  <h3 className="text-white font-semibold text-base lg:text-lg mb-0 lg:mb-2">
+                    {milestone.title}
+                  </h3>
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-2">
-                  {milestone.title}
-                </h3>
-                <p className="text-text-muted text-sm">
+                <p className="text-text-muted text-sm mt-2 lg:mt-0">
                   {milestone.description}
                 </p>
               </div>
             </div>
+
+            {/* Desktop dot - visible at lg+ */}
             <div className="milestone-dot w-5 h-5 rounded-full bg-red-spark shrink-0 hidden lg:block ring-4 ring-core-black relative z-10" />
             <div className="flex-1 hidden lg:block" />
           </div>
@@ -246,7 +307,7 @@ export default function AboutPage() {
       {/* Story Section */}
       <section className="py-24 bg-core-black">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -289,18 +350,18 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative pb-8 lg:pb-0"
             >
-              <div className="aspect-[4/3] bg-gradient-to-br from-purple-dream/20 to-red-spark/20 rounded-lg overflow-hidden">
+              <div className="aspect-[4/3] bg-gradient-to-br from-purple-dream/20 to-red-spark/20 rounded-lg overflow-hidden relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-6xl font-bold text-white mb-2">Since 2018</div>
+                    <div className="text-4xl md:text-6xl font-bold text-white mb-2">Since 2018</div>
                     <div className="text-text-muted">Creating Unforgettable Experiences</div>
                   </div>
                 </div>
               </div>
               {/* Vision & Mission Cards */}
-              <div className="mt-8 space-y-4">
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
                 <div className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-spark/30 transition-colors" data-cursor="hover">
                   <h3 className="text-red-spark font-semibold mb-2">Our Vision</h3>
                   <p className="text-text-muted text-sm">
@@ -318,8 +379,8 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-              {/* Decorative element */}
-              <div className="absolute -bottom-6 -right-6 w-48 h-48 border border-red-spark/30 rounded-lg -z-10" />
+              {/* Decorative element - hidden on mobile to prevent overlap */}
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 border border-red-spark/30 rounded-lg -z-10 hidden lg:block" />
             </motion.div>
           </div>
         </div>
@@ -351,7 +412,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center p-8 bg-white/5 rounded-lg border border-white/10 hover:border-red-spark/50 transition-colors"
+                className="text-center p-5 md:p-8 bg-white/5 rounded-lg border border-white/10 hover:border-red-spark/50 transition-colors"
                 data-cursor="hover"
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-spark/10 text-red-spark mb-6">

@@ -360,11 +360,11 @@ export default function ServiceDetailPage() {
       {/* Stats Section */}
       <section className="py-16 bg-core-black border-y border-white/10">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
             {service.stats.map((stat, index) => (
               <GsapScrollReveal key={stat.label} animation="fadeUp" delay={index * 0.1}>
                 <div className="text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-red-spark mb-2">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-spark mb-2">
                     {stat.value}
                   </div>
                   <div className="text-text-muted text-sm">{stat.label}</div>

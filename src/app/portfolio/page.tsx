@@ -94,7 +94,7 @@ export default function PortfolioPage() {
               <button
                 key={cat.slug}
                 onClick={() => setActiveFilter(cat.slug)}
-                className={`relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-sm ${
+                className={`relative px-5 py-3 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-sm ${
                   activeFilter === cat.slug
                     ? "text-white"
                     : "bg-white/5 border border-white/10 text-text-muted hover:bg-white/10 hover:text-white hover:border-red-spark/30"

@@ -40,7 +40,7 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="py-32 bg-core-black relative overflow-hidden"
+      className="py-16 md:py-32 bg-core-black relative overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute inset-0">

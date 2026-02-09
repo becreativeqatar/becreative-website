@@ -96,7 +96,7 @@ export default function ClientsSection() {
   }, []);
 
   return (
-    <section className="py-32 bg-core-black relative">
+    <section className="py-16 md:py-32 bg-core-black relative">
       {/* Subtle top border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 

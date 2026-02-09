@@ -81,7 +81,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden p-2 text-white"
+              className="lg:hidden p-3 text-white"
               aria-label="Open menu"
             >
               <svg

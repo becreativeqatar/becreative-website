@@ -1325,7 +1325,7 @@ export default function PortfolioDetailPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-core-black overflow-hidden min-h-[70vh] flex items-end">
+      <section className="relative pt-32 pb-20 bg-core-black overflow-hidden min-h-[50vh] md:min-h-[70vh] flex items-end">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-dream/30 to-red-spark/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-core-black via-core-black/70 to-transparent" />
