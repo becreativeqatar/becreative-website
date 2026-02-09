@@ -26,6 +26,12 @@ export const SITE_CONFIG = {
   locales: ["en", "ar"] as const,
 } as const;
 
+export const SOCIAL_LINKS = {
+  instagram: "https://www.instagram.com/becreative.qa/",
+  linkedin: "https://www.linkedin.com/company/becreativeqa/",
+  twitter: "https://x.com/becreativeqa",
+} as const;
+
 export const SERVICES = [
   {
     slug: "events",
@@ -88,7 +94,6 @@ export const SERVICES = [
 ] as const;
 
 export const NAV_LINKS = [
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },

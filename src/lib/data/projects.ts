@@ -1,34 +1,351 @@
-"use client";
+// Shared project data for portfolio listing and case study pages
 
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { GsapScrollReveal, MagneticButton } from "@/components/animations";
-import { ScrollytellingSection } from "@/components/sections";
+export interface PortfolioProject {
+  id: number;
+  slug: string;
+  title: string;
+  category: string;
+  categorySlug: string;
+  year: string;
+  client: string;
+  description: string;
+  stats?: string;
+  image?: string;
+}
 
-const PROJECTS: Record<
-  string,
+export interface ProjectDetail {
+  title: string;
+  category: string;
+  categorySlug: string;
+  year: string;
+  client: string;
+  location: string;
+  duration: string;
+  description: string;
+  challenge: string;
+  approach: string;
+  solution: string;
+  results: { value: string; label: string }[];
+  highlights: string[];
+  testimonial?: { quote: string; author: string; role: string; company: string };
+  gallery: string[];
+  relatedProjects: string[];
+}
+
+/**
+ * Portfolio projects for the listing/grid page.
+ */
+export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
+  // EVENTS
   {
-    title: string;
-    category: string;
-    categorySlug: string;
-    year: string;
-    client: string;
-    location: string;
-    duration: string;
-    description: string;
-    challenge: string;
-    approach: string;
-    solution: string;
-    results: { value: string; label: string }[];
-    highlights: string[];
-    testimonial?: { quote: string; author: string; role: string; company: string };
-    gallery: string[];
-    relatedProjects: string[];
-  }
-> = {
+    id: 1,
+    slug: "luminous-2024",
+    title: "Luminous 2024",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "Qatar Tourism",
+    description:
+      "Qatar's first and largest international light festival. Over 60,000 visitors on weekends with immersive, interactive light installations across five zones inspired by earth, air, water, and fire.",
+    stats: "60,000+ weekend visitors",
+  },
+  {
+    id: 2,
+    slug: "sealine-season-2025",
+    title: "Sealine Season 2025",
+    category: "Events",
+    categorySlug: "events",
+    year: "2025",
+    client: "Visit Qatar",
+    description:
+      "Month-long desert celebration blending adventure, culture, and entertainment. Featuring international artists, Chef on Fire competition, and spectacular fireworks with up to 14,000 visitors per day.",
+    stats: "14,000 daily visitors",
+  },
+  {
+    id: 3,
+    slug: "al-samri-night",
+    title: "Al Samri Night",
+    category: "Events",
+    categorySlug: "events",
+    year: "2025",
+    client: "Visit Qatar",
+    description:
+      "The first concert ever held in Qatar between the dunes. A cultural triumph featuring 400 performers in the Samri Band, drone show, and fireworks display. Site built in just 72 hours.",
+    stats: "23,000+ guests",
+  },
+  {
+    id: 4,
+    slug: "horticultural-expo-doha-2023",
+    title: "Horticultural Expo Doha 2023",
+    category: "Events",
+    categorySlug: "events",
+    year: "2023",
+    client: "Ashghal",
+    description:
+      "Daily event management over 179 days at Al Bidda Park. 1,727 workshops, 7,000+ events, 54 national day celebrations, 124 conferences, 198 government events, and 600 stage performances.",
+    stats: "4.2 million visitors",
+  },
+  {
+    id: 5,
+    slug: "digital-agenda-2030",
+    title: "Digital Agenda 2030 Launch",
+    category: "Events",
+    categorySlug: "events",
+    year: "2023",
+    client: "Ministry of Communications & IT",
+    description:
+      "Landmark launch event for Qatar's national digital transformation vision. Powerful staging and dynamic multimedia storytelling for 500+ distinguished VIP guests.",
+    stats: "500+ VIP guests",
+  },
+  {
+    id: 6,
+    slug: "fanar-launch",
+    title: "FANAR Launch Event",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "Ministry of Communications & IT",
+    description:
+      "Launch of advanced Arabic AI platform at World Summit AI Qatar 2024. Custom animated film with live theatrical performance unveiled by the Prime Minister. Recognized as standout booth with highest visitor footfall.",
+    stats: "World Summit AI 2024",
+  },
+  {
+    id: 7,
+    slug: "al-jazeera-finance-anniversary",
+    title: "Al Jazeera Finance Anniversary",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "Al Jazeera Finance",
+    description:
+      "Elegant corporate anniversary celebration honoring milestones and achievements.",
+    image: "/images/portfolio/al-jazeera-finance-anniversary-1.jpg",
+  },
+  {
+    id: 8,
+    slug: "qatar-ecommerce-hackathon",
+    title: "Qatar's 1st E-Commerce Hackathon",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "MCIT",
+    description:
+      "Qatar's first e-commerce hackathon bringing together innovators and developers to solve digital commerce challenges.",
+    image: "/images/portfolio/qatar-ecommerce-hackathon-1.jpg",
+  },
+  {
+    id: 9,
+    slug: "msdf-mulhemeen",
+    title: "MSDF Mulhemeen",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "MSDF",
+    description:
+      "Inspiring event celebrating achievers and showcasing stories of success and determination.",
+    image: "/images/portfolio/msdf-mulhemeen-1.jpg",
+  },
+  {
+    id: 10,
+    slug: "ooredoo-yalla-namshi",
+    title: "Ooredoo x MSDF Yalla Namshi",
+    category: "Events",
+    categorySlug: "events",
+    year: "2024",
+    client: "Ooredoo / MSDF",
+    description:
+      "Collaborative wellness and community event promoting active lifestyle and social connection.",
+    image: "/images/portfolio/ooredoo-yalla-namshi-1.jpg",
+  },
+  // BRANDING
+  {
+    id: 11,
+    slug: "watad-msdf",
+    title: "WATAD MSDF",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2024",
+    client: "MSDF",
+    description:
+      "Complete brand identity development including visual systems, guidelines, and marketing collateral.",
+    image: "/images/portfolio/watad-msdf-1.jpg",
+  },
+  {
+    id: 12,
+    slug: "coffee-down-under",
+    title: "Coffee Down Under",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2024",
+    client: "Coffee Down Under",
+    description:
+      "Brand development and visual identity for Australian-inspired coffee experience in Qatar.",
+    image: "/images/portfolio/coffee-down-under-1.jpg",
+  },
+  {
+    id: 13,
+    slug: "halwa-al-saigal",
+    title: "Halwa Al Saigal",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2024",
+    client: "Halwa Al Saigal",
+    description:
+      "Traditional Qatari sweets brand identity celebrating heritage and authentic flavors.",
+    image: "/images/portfolio/halwa-al-saigal-1.jpg",
+  },
+  {
+    id: 14,
+    slug: "arab-union-camel-racing",
+    title: "Arab Union for Camel Racing",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2024",
+    client: "Arab Union for Camel Racing",
+    description:
+      "Brand identity for the regional camel racing federation honoring Arabian heritage.",
+  },
+  {
+    id: 15,
+    slug: "investment-trade-court",
+    title: "Investment & Trade Court",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2024",
+    client: "Investment & Trade Court",
+    description:
+      "Professional brand identity and visual systems for Qatar's investment and trade judicial body.",
+    image: "/images/portfolio/investment-trade-court-1.jpg",
+  },
+  {
+    id: 16,
+    slug: "greens",
+    title: "Green's",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2024",
+    client: "Green's",
+    description:
+      "Fresh brand identity development for healthy lifestyle and sustainable products.",
+    image: "/images/portfolio/greens-1.png",
+  },
+  {
+    id: 17,
+    slug: "university-of-doha",
+    title: "University of Doha",
+    category: "Branding",
+    categorySlug: "branding",
+    year: "2024",
+    client: "University of Doha",
+    description:
+      "Comprehensive visual identity and brand guidelines for academic institution.",
+  },
+  // DIGITAL
+  {
+    id: 18,
+    slug: "qatar-stock-exchange",
+    title: "Qatar Stock Exchange Website",
+    category: "Digital",
+    categorySlug: "digital",
+    year: "2024",
+    client: "Qatar Stock Exchange",
+    description:
+      "Modern, responsive website design and development for Qatar's primary stock exchange.",
+  },
+  {
+    id: 19,
+    slug: "qatar-aeronautical-academy",
+    title: "Qatar Aeronautical Academy Website",
+    category: "Digital",
+    categorySlug: "digital",
+    year: "2024",
+    client: "Qatar Aeronautical Academy",
+    description:
+      "Educational institution website showcasing programs and aviation training services.",
+  },
+  {
+    id: 20,
+    slug: "mekdam-holding",
+    title: "Mekdam Holding Website",
+    category: "Digital",
+    categorySlug: "digital",
+    year: "2024",
+    client: "Mekdam Holding",
+    description:
+      "Corporate website for diversified holding company showcasing business portfolio.",
+  },
+  {
+    id: 21,
+    slug: "printemps-doha",
+    title: "Printemps Doha Website",
+    category: "Digital",
+    categorySlug: "digital",
+    year: "2024",
+    client: "Printemps Doha",
+    description:
+      "Luxury retail website for the iconic French department store's Doha location.",
+  },
+  {
+    id: 22,
+    slug: "caffeine-app",
+    title: "Caffeine Mobile App",
+    category: "Digital",
+    categorySlug: "digital",
+    year: "2024",
+    client: "Caffeine",
+    description:
+      "iOS and Android mobile application for coffee ordering and rewards program.",
+  },
+  {
+    id: 23,
+    slug: "fastpay-app",
+    title: "Fastpay Mobile App",
+    category: "Digital",
+    categorySlug: "digital",
+    year: "2024",
+    client: "Fastpay",
+    description:
+      "Mobile payment application design and development for seamless digital transactions.",
+  },
+  {
+    id: 24,
+    slug: "awfaz-global-schools",
+    title: "Awfaz Global Schools Website",
+    category: "Digital",
+    categorySlug: "digital",
+    year: "2024",
+    client: "Awfaz Global Schools",
+    description:
+      "Modern educational institution website showcasing academic programs and school facilities.",
+  },
+  {
+    id: 25,
+    slug: "gharafa-stationery",
+    title: "Gharafa Stationery Website",
+    category: "Digital",
+    categorySlug: "digital",
+    year: "2024",
+    client: "Gharafa Stationery",
+    description:
+      "E-commerce website for office supplies and stationery products with seamless shopping experience.",
+  },
+];
+
+/**
+ * Portfolio filter categories.
+ */
+export const PORTFOLIO_CATEGORIES = [
+  { slug: "all", label: "All Projects" },
+  { slug: "events", label: "Events" },
+  { slug: "branding", label: "Branding" },
+  { slug: "media-production", label: "Media" },
+  { slug: "digital", label: "Digital" },
+] as const;
+
+/**
+ * Detailed project data for individual case study pages.
+ */
+export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
   "luminous-2024": {
     title: "Luminous 2024 - The Light Festival",
     category: "Festivals & Cultural Events",
@@ -889,11 +1206,11 @@ const PROJECTS: Record<
     location: "Qatar",
     duration: "Brand Development",
     description:
-      "Complete brand development and visual identity for Coffee Down Under, an Australian-inspired coffee experience in Qatar. The branding captures the warmth, quality, and authentic coffee culture that defines the Australian café experience.",
+      "Complete brand development and visual identity for Coffee Down Under, an Australian-inspired coffee experience in Qatar. The branding captures the warmth, quality, and authentic coffee culture that defines the Australian cafe experience.",
     challenge:
-      "Create a distinctive brand identity that authentically represents Australian coffee culture while appealing to the Qatar market and standing out in a competitive café landscape.",
+      "Create a distinctive brand identity that authentically represents Australian coffee culture while appealing to the Qatar market and standing out in a competitive cafe landscape.",
     approach:
-      "We developed a comprehensive brand strategy that balanced Australian authenticity with local market appeal, creating visual elements that evoke warmth, quality, and the relaxed café atmosphere.",
+      "We developed a comprehensive brand strategy that balanced Australian authenticity with local market appeal, creating visual elements that evoke warmth, quality, and the relaxed cafe atmosphere.",
     solution:
       "The brand identity includes a distinctive logo, warm color palette inspired by Australian landscapes, custom typography, packaging design, menu design, and complete visual guidelines for all touchpoints.",
     results: [
@@ -997,41 +1314,11 @@ const PROJECTS: Record<
       "Environmental messaging integration",
       "Complete brand guidelines",
     ],
-    gallery: [
-      "/images/portfolio/greens-1.png",
-      "/images/portfolio/greens-2.png",
-      "/images/portfolio/greens-3.png",
-      "/images/portfolio/greens-4.png",
-      "/images/portfolio/greens-5.png",
-      "/images/portfolio/greens-6.png",
-      "/images/portfolio/greens-7.png",
-      "/images/portfolio/greens-8.png",
-      "/images/portfolio/greens-9.png",
-      "/images/portfolio/greens-10.jpg",
-      "/images/portfolio/greens-11.png",
-      "/images/portfolio/greens-12.png",
-      "/images/portfolio/greens-13.png",
-      "/images/portfolio/greens-14.png",
-      "/images/portfolio/greens-15.png",
-      "/images/portfolio/greens-16.png",
-      "/images/portfolio/greens-17.png",
-      "/images/portfolio/greens-18.png",
-      "/images/portfolio/greens-19.png",
-      "/images/portfolio/greens-20.png",
-      "/images/portfolio/greens-21.png",
-      "/images/portfolio/greens-22.png",
-      "/images/portfolio/greens-23.png",
-      "/images/portfolio/greens-24.png",
-      "/images/portfolio/greens-25.png",
-      "/images/portfolio/greens-26.png",
-      "/images/portfolio/greens-27.png",
-      "/images/portfolio/greens-28.png",
-      "/images/portfolio/greens-29.png",
-      "/images/portfolio/greens-30.png",
-      "/images/portfolio/greens-31.png",
-      "/images/portfolio/greens-32.png",
-      "/images/portfolio/greens-33.png",
-    ],
+    gallery: Array.from({ length: 33 }, (_, i) =>
+      i === 9
+        ? `/images/portfolio/greens-${i + 1}.jpg`
+        : `/images/portfolio/greens-${i + 1}.png`
+    ),
     relatedProjects: ["coffee-down-under", "halwa-al-saigal"],
   },
   "halwa-al-saigal": {
@@ -1130,431 +1417,3 @@ const PROJECTS: Record<
     relatedProjects: ["msdf-mulhemeen", "ooredoo-yalla-namshi"],
   },
 };
-
-// Gallery Section Component with Lightbox
-function GallerySection({ gallery, title }: { gallery: string[]; title: string }) {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const openLightbox = (index: number) => {
-    setCurrentIndex(index);
-    setLightboxOpen(true);
-  };
-
-  const closeLightbox = () => {
-    setLightboxOpen(false);
-  };
-
-  const goNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % gallery.length);
-  }, [gallery.length]);
-
-  const goPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
-  }, [gallery.length]);
-
-  // Keyboard navigation
-  useEffect(() => {
-    if (!lightboxOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        goPrev();
-      } else if (e.key === "ArrowRight") {
-        goNext();
-      } else if (e.key === "Escape") {
-        closeLightbox();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxOpen, goPrev, goNext]);
-
-  // Show max 8 images in grid, with "view all" if more
-  const displayImages = gallery.slice(0, 8);
-  const hasMore = gallery.length > 8;
-
-  return (
-    <>
-      <section className="py-12 bg-core-black">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {displayImages.map((image, index) => (
-              <GsapScrollReveal key={index} animation="fadeUp" delay={Math.min(index * 0.05, 0.3)}>
-                <button
-                  onClick={() => openLightbox(index)}
-                  aria-label={`View ${title} - Image ${index + 1}`}
-                  className={`relative rounded-lg overflow-hidden bg-gradient-to-br from-purple-dream/20 to-red-spark/20 group cursor-pointer w-full ${
-                    index === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/3]"
-                  }`}
-                >
-                  <Image
-                    src={image}
-                    alt={`${title} - Image ${index + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes={index === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
-                  />
-                  <div className="absolute inset-0 bg-core-black/0 group-hover:bg-core-black/30 transition-colors duration-300 flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                  {/* Show count on last visible image if there are more */}
-                  {hasMore && index === 7 && (
-                    <div className="absolute inset-0 bg-core-black/60 flex items-center justify-center">
-                      <span className="text-white text-2xl font-bold">+{gallery.length - 8}</span>
-                    </div>
-                  )}
-                </button>
-              </GsapScrollReveal>
-            ))}
-          </div>
-          {hasMore && (
-            <div className="text-center mt-8">
-              <button
-                onClick={() => openLightbox(0)}
-                className="px-6 py-3 border border-white/20 hover:border-red-spark/50 text-white rounded-lg transition-colors hover:bg-white/5"
-              >
-                View All {gallery.length} Images
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-core-black/95 flex items-center justify-center"
-            onClick={closeLightbox}
-          >
-            {/* Close button */}
-            <button
-              onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-              aria-label="Close lightbox"
-              className="absolute top-4 right-4 z-[60] p-3 bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-all"
-            >
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Image */}
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="relative w-[80vw] h-[80vh] flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={gallery[currentIndex]}
-                alt={`${title} - Image ${currentIndex + 1}`}
-                fill
-                className="object-contain"
-                sizes="80vw"
-                priority
-              />
-            </motion.div>
-
-            {/* Navigation buttons */}
-            <button
-              onClick={(e) => { e.stopPropagation(); goPrev(); }}
-              aria-label="Previous image"
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-[60] p-3 bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-all"
-            >
-              <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); goNext(); }}
-              aria-label="Next image"
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-[60] p-3 bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-all"
-            >
-              <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
-
-            {/* Counter */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[60] px-4 py-2 bg-white/10 rounded-full text-white/70 text-sm">
-              {currentIndex + 1} / {gallery.length}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-}
-
-export default function PortfolioDetailPage() {
-  const params = useParams();
-  const slug = params.slug as string;
-  const project = PROJECTS[slug];
-
-  if (!project) {
-    return (
-      <section className="min-h-screen pt-32 pb-20 bg-core-black">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
-          <p className="text-text-muted mb-8">
-            The project you&apos;re looking for doesn&apos;t exist.
-          </p>
-          <Link href="/portfolio" className="text-red-spark hover:text-white transition-colors">
-            ← Back to Portfolio
-          </Link>
-        </div>
-      </section>
-    );
-  }
-
-  const relatedProjectsData = project.relatedProjects
-    .map((slug) => ({ slug, ...PROJECTS[slug] }))
-    .filter((p) => p.title);
-
-  return (
-    <>
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-core-black overflow-hidden min-h-[70vh] flex items-end">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-dream/30 to-red-spark/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-core-black via-core-black/70 to-transparent" />
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center gap-2 text-text-muted hover:text-white mb-8 transition-colors"
-            >
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M19 12H5M12 19l-7-7 7-7" />
-              </svg>
-              Back to Portfolio
-            </Link>
-
-            <div className="flex flex-wrap items-center gap-4 mb-4">
-              <span className="px-4 py-1 bg-red-spark/20 text-red-spark text-sm font-medium rounded-full">
-                {project.category}
-              </span>
-              <span className="text-text-muted">{project.year}</span>
-            </div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              {project.title}
-            </h1>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-              <div>
-                <div className="text-text-muted text-sm mb-1">Client</div>
-                <div className="text-white font-medium">{project.client}</div>
-              </div>
-              <div>
-                <div className="text-text-muted text-sm mb-1">Location</div>
-                <div className="text-white font-medium">{project.location}</div>
-              </div>
-              <div>
-                <div className="text-text-muted text-sm mb-1">Duration</div>
-                <div className="text-white font-medium">{project.duration}</div>
-              </div>
-              <div>
-                <div className="text-text-muted text-sm mb-1">Category</div>
-                <div className="text-white font-medium">{project.category}</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Results Stats */}
-      <section className="py-16 bg-core-black border-y border-white/10">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {project.results.map((result, index) => (
-              <GsapScrollReveal key={result.label} animation="fadeUp" delay={index * 0.1}>
-                <div className="text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-red-spark mb-2">
-                    {result.value}
-                  </div>
-                  <div className="text-text-muted text-sm">{result.label}</div>
-                </div>
-              </GsapScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Overview */}
-      <section className="py-24 bg-core-black">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <GsapScrollReveal animation="fadeUp">
-              <h2 className="text-3xl font-bold text-white mb-6">Project Overview</h2>
-              <p className="text-text-muted text-lg leading-relaxed">{project.description}</p>
-            </GsapScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Grid */}
-      <GallerySection gallery={project.gallery} title={project.title} />
-
-      {/* Challenge, Approach, Solution - Scrollytelling */}
-      <ScrollytellingSection
-        challenge={project.challenge}
-        approach={project.approach}
-        solution={project.solution}
-      />
-
-      {/* Highlights */}
-      <section className="py-24 bg-core-black">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <GsapScrollReveal animation="fadeUp">
-              <h2 className="text-3xl font-bold text-white mb-8">Project Highlights</h2>
-            </GsapScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {project.highlights.map((highlight, index) => (
-                <GsapScrollReveal key={index} animation="fadeUp" delay={index * 0.1}>
-                  <div className="p-6 bg-white/5 rounded-lg border border-white/10 flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-red-spark/20 flex items-center justify-center shrink-0">
-                      <svg
-                        className="w-4 h-4 text-red-spark"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <path d="M20 6L9 17l-5-5" />
-                      </svg>
-                    </div>
-                    <span className="text-text-light">{highlight}</span>
-                  </div>
-                </GsapScrollReveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonial */}
-      {project.testimonial && (
-        <section className="py-24 bg-gradient-to-b from-core-black/95 to-core-black">
-          <div className="container mx-auto px-6">
-            <GsapScrollReveal animation="fadeUp">
-              <div className="max-w-3xl mx-auto text-center">
-                <svg
-                  className="w-16 h-16 text-red-spark/30 mx-auto mb-8"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-                <p className="text-2xl md:text-3xl text-white font-light leading-relaxed mb-8">
-                  &ldquo;{project.testimonial.quote}&rdquo;
-                </p>
-                <div>
-                  <div className="text-white font-semibold text-lg">
-                    {project.testimonial.author}
-                  </div>
-                  <div className="text-text-muted">
-                    {project.testimonial.role}, {project.testimonial.company}
-                  </div>
-                </div>
-              </div>
-            </GsapScrollReveal>
-          </div>
-        </section>
-      )}
-
-      {/* Related Projects */}
-      {relatedProjectsData.length > 0 && (
-        <section className="py-24 bg-core-black border-t border-white/10">
-          <div className="container mx-auto px-6">
-            <GsapScrollReveal animation="fadeUp">
-              <h2 className="text-3xl font-bold text-white mb-12">Related Projects</h2>
-            </GsapScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {relatedProjectsData.map((related, index) => (
-                <GsapScrollReveal key={related.slug} animation="fadeUp" delay={index * 0.1}>
-                  <Link
-                    href={`/portfolio/${related.slug}`}
-                    className="group block bg-white/5 rounded-lg overflow-hidden border border-white/10 hover:border-red-spark/50 transition-colors"
-                    data-cursor="hover"
-                    data-cursor-text="View"
-                  >
-                    <div className="aspect-[16/9] bg-gradient-to-br from-purple-dream/20 to-red-spark/20 relative">
-                      <div className="absolute inset-0 bg-core-black/30 group-hover:bg-core-black/10 transition-colors" />
-                    </div>
-                    <div className="p-6">
-                      <span className="text-red-spark text-xs font-medium tracking-wider uppercase">
-                        {related.category}
-                      </span>
-                      <h3 className="text-xl font-semibold text-white mt-2 group-hover:text-red-spark transition-colors">
-                        {related.title}
-                      </h3>
-                    </div>
-                  </Link>
-                </GsapScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* CTA */}
-      <section className="py-24 bg-core-black border-t border-white/10">
-        <div className="container mx-auto px-6">
-          <GsapScrollReveal animation="fadeUp">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready to Start Your Project?
-              </h2>
-              <p className="text-text-muted text-lg mb-8">
-                Let&apos;s create something extraordinary together.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <MagneticButton strength={0.2}>
-                  <Link
-                    href="/contact"
-                    className="inline-block px-8 py-4 bg-red-spark hover:bg-red-spark/90 text-white font-medium rounded transition-all duration-300"
-                  >
-                    Get in Touch
-                  </Link>
-                </MagneticButton>
-                <MagneticButton strength={0.2}>
-                  <Link
-                    href="/portfolio"
-                    className="inline-block px-8 py-4 border border-white/20 hover:border-white/40 text-white font-medium rounded transition-all duration-300 hover:bg-white/5"
-                  >
-                    View More Projects
-                  </Link>
-                </MagneticButton>
-              </div>
-            </div>
-          </GsapScrollReveal>
-        </div>
-      </section>
-    </>
-  );
-}

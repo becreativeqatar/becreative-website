@@ -1,9 +1,16 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-import { LineReveal, GradientText, WordReveal, GsapScrollReveal } from "@/components/animations";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LineReveal, GradientText } from "@/components/animations";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const VALUES = [
   {
@@ -53,6 +60,115 @@ const MILESTONES = [
   { year: "2025", title: "Record Events", description: "Delivered Sealine Season 2025 and Al Samri Night (23,000+ guests) - first desert concert in Qatar" },
 ];
 
+function InteractiveTimeline() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!timelineRef.current || !lineRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Animate the timeline line drawing
+      gsap.fromTo(
+        lineRef.current,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: timelineRef.current,
+            start: "top 60%",
+            end: "bottom 60%",
+            scrub: 0.5,
+          },
+        }
+      );
+
+      // Animate each milestone
+      const cards = timelineRef.current?.querySelectorAll(".milestone-card");
+      const dots = timelineRef.current?.querySelectorAll(".milestone-dot");
+
+      cards?.forEach((card, i) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, x: i % 2 === 0 ? -50 : 50, y: 20 },
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 75%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+
+      dots?.forEach((dot) => {
+        gsap.fromTo(
+          dot,
+          { scale: 0 },
+          {
+            scale: 1,
+            duration: 0.4,
+            ease: "back.out(2)",
+            scrollTrigger: {
+              trigger: dot,
+              start: "top 70%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={timelineRef} className="relative">
+      {/* Timeline line with gradient */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px hidden lg:block overflow-hidden">
+        <div className="absolute inset-0 bg-white/10" />
+        <div
+          ref={lineRef}
+          className="absolute inset-0 bg-gradient-to-b from-red-spark via-purple-dream to-red-spark origin-top"
+        />
+      </div>
+
+      <div className="space-y-16">
+        {MILESTONES.map((milestone, index) => (
+          <div
+            key={milestone.year}
+            className={`flex flex-col lg:flex-row items-center gap-8 ${
+              index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+            }`}
+          >
+            <div className={`flex-1 ${index % 2 === 0 ? "lg:text-right" : "lg:text-left"}`}>
+              <div className="milestone-card bg-white/5 p-6 rounded-lg border border-white/10 hover:border-red-spark/30 transition-all duration-300">
+                <div className="text-red-spark font-bold text-3xl mb-2">
+                  {milestone.year}
+                </div>
+                <h3 className="text-white font-semibold text-lg mb-2">
+                  {milestone.title}
+                </h3>
+                <p className="text-text-muted text-sm">
+                  {milestone.description}
+                </p>
+              </div>
+            </div>
+            <div className="milestone-dot w-5 h-5 rounded-full bg-red-spark shrink-0 hidden lg:block ring-4 ring-core-black relative z-10" />
+            <div className="flex-1 hidden lg:block" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function AboutPage() {
   return (
     <>
@@ -91,6 +207,38 @@ export default function AboutPage() {
               for the Love of Qatar. We craft powerful experiences that connect audiences
               and celebrate identity since 2018.
             </motion.p>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Counter Section */}
+      <section className="py-16 bg-core-black border-y border-white/10">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <AnimatedCounter value={200} suffix="+" />
+              </div>
+              <div className="text-text-muted text-sm">Events Delivered</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <AnimatedCounter value={4} suffix="M+" />
+              </div>
+              <div className="text-text-muted text-sm">Attendees Reached</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <AnimatedCounter value={50} suffix="+" />
+              </div>
+              <div className="text-text-muted text-sm">Corporate Clients</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <AnimatedCounter value={6} suffix="+" />
+              </div>
+              <div className="text-text-muted text-sm">Years of Excellence</div>
+            </div>
           </div>
         </div>
       </section>
@@ -153,7 +301,7 @@ export default function AboutPage() {
               </div>
               {/* Vision & Mission Cards */}
               <div className="mt-8 space-y-4">
-                <div className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+                <div className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-spark/30 transition-colors" data-cursor="hover">
                   <h3 className="text-red-spark font-semibold mb-2">Our Vision</h3>
                   <p className="text-text-muted text-sm">
                     To be the region&apos;s leading experience creators — redefining the boundaries
@@ -161,8 +309,8 @@ export default function AboutPage() {
                     unforgettable journeys.
                   </p>
                 </div>
-                <div className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                  <h3 className="text-red-spark font-semibold mb-2">Our Mission</h3>
+                <div className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-purple-dream/30 transition-colors" data-cursor="hover">
+                  <h3 className="text-purple-dream font-semibold mb-2">Our Mission</h3>
                   <p className="text-text-muted text-sm">
                     To create exceptional events and experiences that inspire, connect, and
                     leave a lasting impact — blending creativity, culture, and precision to
@@ -204,6 +352,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center p-8 bg-white/5 rounded-lg border border-white/10 hover:border-red-spark/50 transition-colors"
+                data-cursor="hover"
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-spark/10 text-red-spark mb-6">
                   {value.icon}
@@ -218,7 +367,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline Section */}
+      {/* Interactive Timeline Section */}
       <section className="py-24 bg-core-black">
         <div className="container mx-auto px-6">
           <motion.div
@@ -236,41 +385,7 @@ export default function AboutPage() {
             </h2>
           </motion.div>
 
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 hidden lg:block" />
-
-            <div className="space-y-12">
-              {MILESTONES.map((milestone, index) => (
-                <motion.div
-                  key={milestone.year}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`flex flex-col lg:flex-row items-center gap-8 ${
-                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                  }`}
-                >
-                  <div className={`flex-1 ${index % 2 === 0 ? "lg:text-right" : "lg:text-left"}`}>
-                    <div className="bg-white/5 p-6 rounded-lg border border-white/10">
-                      <div className="text-red-spark font-bold text-2xl mb-2">
-                        {milestone.year}
-                      </div>
-                      <h3 className="text-white font-semibold text-lg mb-2">
-                        {milestone.title}
-                      </h3>
-                      <p className="text-text-muted text-sm">
-                        {milestone.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-4 h-4 rounded-full bg-red-spark shrink-0 hidden lg:block" />
-                  <div className="flex-1 hidden lg:block" />
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          <InteractiveTimeline />
         </div>
       </section>
 
@@ -305,16 +420,12 @@ export default function AboutPage() {
           >
             <Link
               href="/team"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-red-spark hover:bg-red-spark/90 text-white font-medium rounded transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-red-spark hover:bg-red-spark/90 text-white font-medium rounded transition-all duration-300 hover:scale-105 glow-red"
+              data-cursor="hover"
+              data-cursor-text="Team"
             >
               View Our Team
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
@@ -341,7 +452,9 @@ export default function AboutPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-red-spark hover:bg-red-spark/90 text-white font-medium rounded transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-red-spark hover:bg-red-spark/90 text-white font-medium rounded transition-all duration-300 hover:scale-105 glow-red hover:glow-red-intense"
+              data-cursor="hover"
+              data-cursor-text="Go"
             >
               Contact Us
             </Link>

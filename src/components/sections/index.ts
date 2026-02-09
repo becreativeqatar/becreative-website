@@ -6,3 +6,5 @@ export { default as HorizontalPortfolioSection } from "./HorizontalPortfolioSect
 export { default as ClientsSection } from "./ClientsSection";
 export { default as TestimonialsSection } from "./TestimonialsSection";
 export { default as CTASection } from "./CTASection";
+export { default as ScrollytellingSection } from "./ScrollytellingSection";
+export { default as VideoHero } from "./VideoHero";

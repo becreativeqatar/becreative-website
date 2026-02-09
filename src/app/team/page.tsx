@@ -251,6 +251,8 @@ export default function TeamPage() {
                 <Link
                   href={`/team/${member.slug}`}
                   className="group block p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-spark/50 transition-all duration-300"
+                  data-cursor="hover"
+                  data-cursor-text="View"
                 >
                   {/* Avatar */}
                   <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-purple-dream/30 to-red-spark/30 rounded-full flex items-center justify-center">

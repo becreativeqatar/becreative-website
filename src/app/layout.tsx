@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import { Header, Footer } from "@/components/layout";
 import { CustomCursor } from "@/components/animations";
 import { AppProvider } from "@/components/providers";
+import { OrganizationSchema, LocalBusinessSchema } from "@/components/seo/JsonLd";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const codecPro = localFont({
@@ -38,7 +40,10 @@ const codecPro = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Be Creative Events | Be Memorable - Qatar's Premier Creative Events Agency",
+  title: {
+    default: "Be Creative Events | Be Memorable - Qatar's Premier Creative Events Agency",
+    template: "%s | Be Creative Events",
+  },
   description:
     "Be Creative Events is Qatar's premier creative events agency specializing in immersive event management, destination creation, brand activation, and cultural storytelling. Celebrating Brands for the Love of Qatar.",
   keywords: [
@@ -51,8 +56,17 @@ export const metadata: Metadata = {
     "Doha events",
     "Qatar Tourism",
     "immersive experiences",
+    "event planning Doha",
+    "branding agency Qatar",
+    "media production Qatar",
   ],
   authors: [{ name: "Be Creative Events" }],
+  creator: "Be Creative Events",
+  publisher: "Be Creative Events",
+  metadataBase: new URL("https://bce.qa"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Be Creative Events | Be Memorable",
     description:
@@ -71,6 +85,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -84,12 +105,22 @@ export default function RootLayout({
       <body
         className={`${codecPro.variable} font-sans antialiased`}
       >
+        <OrganizationSchema />
+        <LocalBusinessSchema />
         <AppProvider>
-          {/* <CustomCursor /> */}
+          <CustomCursor />
+          {/* Skip to content link for accessibility */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:z-[10000] focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-red-spark focus:text-white focus:rounded"
+          >
+            Skip to main content
+          </a>
           <Header />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
         </AppProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -52,6 +52,7 @@ export default function CreativeFusionHero() {
   const trailsRef = useRef<Trail[]>([]);
   const mouseRef = useRef({ x: 0, y: 0, isDown: false, isActive: false });
   const animationRef = useRef<number | null>(null);
+  const isVisibleRef = useRef(true);
   const lastPosRef = useRef({ x: 0, y: 0 });
 
   const [isInitialized, setIsInitialized] = useState(false);
@@ -109,10 +110,13 @@ export default function CreativeFusionHero() {
     ctx.fillStyle = '#101820';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Initialize ambient particles
+    // Initialize ambient particles — fewer on mobile for performance
     const rect = canvas.getBoundingClientRect();
+    const isMobile = window.innerWidth < 768;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const initialParticleCount = prefersReducedMotion ? 10 : isMobile ? 20 : 50;
     particlesRef.current = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < initialParticleCount; i++) {
       particlesRef.current.push(
         createParticle(
           Math.random() * rect.width,
@@ -202,7 +206,26 @@ export default function CreativeFusionHero() {
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
     window.addEventListener('touchstart', handleTouchStart);
 
+    // Pause animation when hero is off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+        if (entry.isIntersecting && !animationRef.current) {
+          animationRef.current = requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
+    const minParticles = isMobile ? 15 : 30;
+
     const animate = () => {
+      if (!isVisibleRef.current) {
+        animationRef.current = null;
+        return;
+      }
+
       const rect = canvas.getBoundingClientRect();
       const width = rect.width;
       const height = rect.height;
@@ -297,7 +320,7 @@ export default function CreativeFusionHero() {
 
       particlesRef.current = particlesRef.current.filter(p => p.life < p.maxLife);
 
-      while (particlesRef.current.length < 30) {
+      while (particlesRef.current.length < minParticles) {
         particlesRef.current.push(
           createParticle(
             Math.random() * width,
@@ -312,6 +335,7 @@ export default function CreativeFusionHero() {
     animate();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousedown', handleMouseDown);
